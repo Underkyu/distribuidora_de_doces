@@ -17,7 +17,7 @@ public class menuTabelas extends javax.swing.JFrame {
      */
     public menuTabelas() {
         initComponents();
-        getContentPane().setBackground(new Color(255,255,255));
+        getContentPane().setBackground(new Color(189,158,207));
     }
 
     /**
@@ -29,18 +29,16 @@ public class menuTabelas extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Titulo = new javax.swing.JLabel();
         Pedidos = new javax.swing.JButton();
         Produtos = new javax.swing.JButton();
         Clientes = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        Titulo3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
 
-        Titulo.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
-        Titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Titulo.setText("Registros");
-
+        Pedidos.setBackground(new java.awt.Color(30, 187, 172));
         Pedidos.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         Pedidos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Estoquista/pedido.png"))); // NOI18N
         Pedidos.setText("Pedidos");
@@ -52,43 +50,69 @@ public class menuTabelas extends javax.swing.JFrame {
             }
         });
 
+        Produtos.setBackground(new java.awt.Color(30, 187, 172));
         Produtos.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         Produtos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Estoquista/doce.png"))); // NOI18N
         Produtos.setText("Produtos");
         Produtos.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         Produtos.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
+        Clientes.setBackground(new java.awt.Color(30, 187, 172));
         Clientes.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         Clientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Estoquista/Cliente.png"))); // NOI18N
         Clientes.setText("Clientes");
         Clientes.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         Clientes.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
+        jPanel3.setBackground(new java.awt.Color(137, 59, 182));
+
+        Titulo3.setBackground(new java.awt.Color(255, 255, 255));
+        Titulo3.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
+        Titulo3.setForeground(new java.awt.Color(255, 255, 255));
+        Titulo3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Titulo3.setText("Registros");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addComponent(Titulo3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(37, 37, 37))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addComponent(Titulo3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Titulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(Produtos, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(Pedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(Clientes, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(Titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Clientes)
                     .addComponent(Pedidos)
                     .addComponent(Produtos))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         pack();
@@ -137,6 +161,15 @@ public class menuTabelas extends javax.swing.JFrame {
     private javax.swing.JButton Clientes;
     private javax.swing.JButton Pedidos;
     private javax.swing.JButton Produtos;
-    private javax.swing.JLabel Titulo;
+    private javax.swing.JLabel Titulo14;
+    private javax.swing.JLabel Titulo15;
+    private javax.swing.JLabel Titulo16;
+    private javax.swing.JLabel Titulo17;
+    private javax.swing.JLabel Titulo3;
+    private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel14;
+    private javax.swing.JPanel jPanel15;
+    private javax.swing.JPanel jPanel16;
+    private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
 }
