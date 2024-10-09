@@ -5,19 +5,29 @@
 package Estoquista;
 
 import java.awt.Color;
+import Conexao.Conexao;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import java.sql.*;
 
 /**
  *
  * @author FATEC ZONA LESTE
  */
 public class Clientes extends javax.swing.JFrame {
+Conexao con_cliente;    
+    
 
     /**
      * Creates new form Clientes
      */
     public Clientes() {
         initComponents();
-         getContentPane().setBackground(new Color(189,158,207));
+        con_cliente = new Conexao();
+        con_cliente.conecta();
+        con_cliente.executaSQL("select * from cliente order by id_cliente");
+        preenchaerTabela();
+        getContentPane().setBackground(new Color(189,158,207));
     }
 
     /**
@@ -112,19 +122,19 @@ public class Clientes extends javax.swing.JFrame {
                 .addComponent(Pesquisa_input, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Bloquear, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(320, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(23, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
+                .addGap(41, 41, 41)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(Lupa)
@@ -140,6 +150,22 @@ public class Clientes extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_Pesquisa_inputActionPerformed
 
+    public void preenchaerTabela(){
+        DefaultTableModel modelo = (DefaultTableModel) Tabela_Clientes.getModel();
+        modelo.setNumRows(0);
+        
+        try {
+            con_cliente.resultset.beforeFirst();
+            while(con_cliente.resultset.next()){
+                modelo.addRow(new Object[]{
+                    con_cliente.resultset.getString("id_cliente"),con_cliente.resultset.getString("cpf_cliente"),con_cliente.resultset.getString("nome_cliente"), con_cliente.resultset.getString("cpf_cliente"), con_cliente.resultset.getString("telefone_cliente"), con_cliente.resultset.getString("endereco_cliente"), con_cliente.resultset.getString("data_nasc"), con_cliente.resultset.getString("status_cliente")
+                });
+            }
+        }catch(SQLException erro){
+            JOptionPane.showMessageDialog(null, "Erro ao listar a tabela");
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
