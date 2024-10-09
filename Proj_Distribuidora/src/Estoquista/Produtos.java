@@ -5,18 +5,34 @@
 package Estoquista;
 
 import java.awt.Color;
+import Conexao.Conexao;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import java.sql.*;
 
 /**
  *
  * @author FATEC ZONA LESTE
  */
 public class Produtos extends javax.swing.JFrame {
-
+Conexao con_produtos;
+Conexao con_fornecedor;
+Conexao con_categoria;
     /**
      * Creates new form Clientes
      */
     public Produtos() {
         initComponents();
+        con_produtos = new Conexao();
+        con_produtos.conecta();
+        con_produtos.executaSQL("select * from produto order by id_produto");
+        con_fornecedor = new Conexao();
+        con_fornecedor.conecta();
+        con_fornecedor.executaSQL("select * from fornecedor order by id_fornecedor");
+        con_categoria = new Conexao();
+        con_categoria.conecta();
+        con_categoria.executaSQL("select * from categoria order by id_categoria ");
+        preenchaerTabela();
          getContentPane().setBackground(new Color(189,158,207));
     }
 
@@ -30,15 +46,15 @@ public class Produtos extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        Tabela_Pedidos = new javax.swing.JTable();
+        Tabela_Produtos = new javax.swing.JTable();
         Pesquisar = new javax.swing.JTextField();
         Lupa = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        Tabela_Pedidos2 = new javax.swing.JTable();
+        Tabela_Forncedor = new javax.swing.JTable();
         Pesquisar2 = new javax.swing.JTextField();
         Lupa2 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        Tabela_Pedidos3 = new javax.swing.JTable();
+        Tabela_Categoria = new javax.swing.JTable();
         Pesquisar3 = new javax.swing.JTextField();
         Lupa3 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -54,8 +70,8 @@ public class Produtos extends javax.swing.JFrame {
 
         jScrollPane1.setBorder(null);
 
-        Tabela_Pedidos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        Tabela_Pedidos.setModel(new javax.swing.table.DefaultTableModel(
+        Tabela_Produtos.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        Tabela_Produtos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -74,7 +90,7 @@ public class Produtos extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(Tabela_Pedidos);
+        jScrollPane1.setViewportView(Tabela_Produtos);
 
         Pesquisar.setText("Pesquisar\n");
         Pesquisar.addActionListener(new java.awt.event.ActionListener() {
@@ -87,8 +103,8 @@ public class Produtos extends javax.swing.JFrame {
 
         jScrollPane3.setBorder(null);
 
-        Tabela_Pedidos2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        Tabela_Pedidos2.setModel(new javax.swing.table.DefaultTableModel(
+        Tabela_Forncedor.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        Tabela_Forncedor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -107,7 +123,7 @@ public class Produtos extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane3.setViewportView(Tabela_Pedidos2);
+        jScrollPane3.setViewportView(Tabela_Forncedor);
 
         Pesquisar2.setText("Pesquisar\n");
         Pesquisar2.addActionListener(new java.awt.event.ActionListener() {
@@ -120,8 +136,8 @@ public class Produtos extends javax.swing.JFrame {
 
         jScrollPane4.setBorder(null);
 
-        Tabela_Pedidos3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        Tabela_Pedidos3.setModel(new javax.swing.table.DefaultTableModel(
+        Tabela_Categoria.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        Tabela_Categoria.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -140,7 +156,7 @@ public class Produtos extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane4.setViewportView(Tabela_Pedidos3);
+        jScrollPane4.setViewportView(Tabela_Categoria);
 
         Pesquisar3.setText("Pesquisar\n");
         Pesquisar3.addActionListener(new java.awt.event.ActionListener() {
@@ -222,8 +238,8 @@ public class Produtos extends javax.swing.JFrame {
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Titulo14)
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addComponent(Titulo14, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -237,16 +253,6 @@ public class Produtos extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(Lupa2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Pesquisar2, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Lupa3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Pesquisar3, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(136, 136, 136))
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(12, 12, 12)
@@ -264,11 +270,21 @@ public class Produtos extends javax.swing.JFrame {
                                 .addComponent(Lupa)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(Pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(Lupa2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Pesquisar2, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(Lupa3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Pesquisar3, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(32, 32, 32))
         );
         layout.setVerticalGroup(
@@ -279,25 +295,25 @@ public class Produtos extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(Lupa)
-                    .addComponent(Pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(110, 110, 110)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(29, 29, 29)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(Pesquisar2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(Lupa2))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(Lupa3)
-                        .addComponent(Pesquisar3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(Lupa)
+                            .addComponent(Pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(110, 110, 110)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(29, 29, 29)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(Pesquisar2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Lupa2)))
+                    .addComponent(Lupa3)
+                    .addComponent(Pesquisar3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -353,6 +369,59 @@ public class Produtos extends javax.swing.JFrame {
             }
         });
     }
+    
+     public void preenchaerTabela(){
+        /*Tabela_Pedidos.getColumnModel().getColumn(1).setPreferredWidth(150);
+        Tabela_Pedidos.getColumnModel().getColumn(2).setPreferredWidth(150);
+        Tabela_Pedidos.getColumnModel().getColumn(3).setPreferredWidth(150);
+        Tabela_Pedidos.getColumnModel().getColumn(4).setPreferredWidth(200);
+        Tabela_Pedidos.getColumnModel().getColumn(5).setPreferredWidth(150);
+        Tabela_Pedidos.getColumnModel().getColumn(6).setPreferredWidth(125);*/
+        
+        DefaultTableModel modelo = (DefaultTableModel) Tabela_Produtos.getModel();
+        modelo.setNumRows(0);
+        
+        try {
+            con_produtos.resultset.beforeFirst();
+            while(con_produtos.resultset.next()){
+                modelo.addRow(new Object[]{
+                    con_produtos.resultset.getString("id_produto"),con_produtos.resultset.getString("id_fornecedor"),con_produtos.resultset.getString("id_categoria"), con_produtos.resultset.getString("nome_produto"), con_produtos.resultset.getString("valor_unitario"), con_produtos.resultset.getString("quantidade_estoque"), con_produtos.resultset.getString("quantidade_minima")
+                });
+            }
+        }catch(SQLException erro){
+            JOptionPane.showMessageDialog(null, "Erro ao listar a tabela");
+        }
+        
+        
+        
+        DefaultTableModel modelo2 = (DefaultTableModel) Tabela_Forncedor.getModel();
+        modelo2.setNumRows(0);
+        
+        try {
+            con_fornecedor.resultset.beforeFirst();
+            while(con_fornecedor.resultset.next()){
+                modelo2.addRow(new Object[]{
+                    con_fornecedor.resultset.getString("id_fornecedor"),con_fornecedor.resultset.getString("nome_fornecedor"),con_fornecedor.resultset.getString("endereco_fornecedor"), con_fornecedor.resultset.getString("telefone_fornecedor")
+                });
+            }
+        }catch(SQLException erro){
+            JOptionPane.showMessageDialog(null, "Erro ao listar a tabela");
+        }
+        
+        DefaultTableModel modelo3 = (DefaultTableModel) Tabela_Categoria.getModel();
+        modelo3.setNumRows(0);
+        
+        try {
+            con_categoria.resultset.beforeFirst();
+            while(con_categoria.resultset.next()){
+                modelo3.addRow(new Object[]{
+                    con_categoria.resultset.getString("id_categoria"),con_categoria.resultset.getString("nome_categoria")
+                });
+            }
+        }catch(SQLException erro){
+            JOptionPane.showMessageDialog(null, "Erro ao listar a tabela");
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Lupa;
@@ -361,37 +430,17 @@ public class Produtos extends javax.swing.JFrame {
     private javax.swing.JTextField Pesquisar;
     private javax.swing.JTextField Pesquisar2;
     private javax.swing.JTextField Pesquisar3;
-    private javax.swing.JTable Tabela_Pedidos;
-    private javax.swing.JTable Tabela_Pedidos2;
-    private javax.swing.JTable Tabela_Pedidos3;
+    private javax.swing.JTable Tabela_Categoria;
+    private javax.swing.JTable Tabela_Forncedor;
+    private javax.swing.JTable Tabela_Produtos;
     private javax.swing.JLabel Titulo;
-    private javax.swing.JLabel Titulo10;
-    private javax.swing.JLabel Titulo11;
-    private javax.swing.JLabel Titulo12;
-    private javax.swing.JLabel Titulo13;
     private javax.swing.JLabel Titulo14;
     private javax.swing.JLabel Titulo3;
-    private javax.swing.JLabel Titulo4;
-    private javax.swing.JLabel Titulo5;
-    private javax.swing.JLabel Titulo6;
-    private javax.swing.JLabel Titulo7;
-    private javax.swing.JLabel Titulo8;
-    private javax.swing.JLabel Titulo9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;

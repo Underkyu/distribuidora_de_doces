@@ -4,6 +4,10 @@
  */
 package Estoquista;
 
+import Conexao.Conexao;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import java.sql.*;
 import java.awt.Color;
 
 /**
@@ -11,12 +15,20 @@ import java.awt.Color;
  * @author FATEC ZONA LESTE
  */
 public class Pedidos extends javax.swing.JFrame {
-
+    Conexao con_pedidos;
+    Conexao con_produto_vendido;
     /**
      * Creates new form Clientes
      */
     public Pedidos() {
         initComponents();
+        con_pedidos = new Conexao();
+        con_pedidos.conecta();
+        con_pedidos.executaSQL("select * from pedido order by id_pedido");
+        con_produto_vendido = new Conexao();
+        con_produto_vendido.conecta();
+        con_produto_vendido.executaSQL("select * from produto_vendido order by id_prod_vendido");
+        preenchaerTabela();
          getContentPane().setBackground(new Color(189,158,207));
     }
 
@@ -34,7 +46,7 @@ public class Pedidos extends javax.swing.JFrame {
         Pesquisar = new javax.swing.JTextField();
         Lupa = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        Tabela_Pedidos2 = new javax.swing.JTable();
+        Tabela_Produtos_Pedidos = new javax.swing.JTable();
         Pesquisar2 = new javax.swing.JTextField();
         Lupa2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -48,7 +60,7 @@ public class Pedidos extends javax.swing.JFrame {
 
         jScrollPane1.setBorder(null);
 
-        Tabela_Pedidos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Tabela_Pedidos.setBorder(javax.swing.BorderFactory.createLineBorder(null));
         Tabela_Pedidos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -81,8 +93,8 @@ public class Pedidos extends javax.swing.JFrame {
 
         jScrollPane3.setBorder(null);
 
-        Tabela_Pedidos2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        Tabela_Pedidos2.setModel(new javax.swing.table.DefaultTableModel(
+        Tabela_Produtos_Pedidos.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        Tabela_Produtos_Pedidos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -101,7 +113,7 @@ public class Pedidos extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane3.setViewportView(Tabela_Pedidos2);
+        jScrollPane3.setViewportView(Tabela_Produtos_Pedidos);
 
         Pesquisar2.setText("Pesquisar\n");
         Pesquisar2.addActionListener(new java.awt.event.ActionListener() {
@@ -152,8 +164,6 @@ public class Pedidos extends javax.swing.JFrame {
         Titulo3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Titulo3.setText("Produto vendido");
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Admin\\Downloads\\ponto-de-venda (1).png")); // NOI18N
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -185,8 +195,7 @@ public class Pedidos extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(Lupa)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(15, 15, 15))))
+                                .addComponent(Pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -267,6 +276,45 @@ public class Pedidos extends javax.swing.JFrame {
             }
         });
     }
+    
+        public void preenchaerTabela(){
+        /*Tabela_Pedidos.getColumnModel().getColumn(1).setPreferredWidth(150);
+        Tabela_Pedidos.getColumnModel().getColumn(2).setPreferredWidth(150);
+        Tabela_Pedidos.getColumnModel().getColumn(3).setPreferredWidth(150);
+        Tabela_Pedidos.getColumnModel().getColumn(4).setPreferredWidth(200);
+        Tabela_Pedidos.getColumnModel().getColumn(5).setPreferredWidth(150);
+        Tabela_Pedidos.getColumnModel().getColumn(6).setPreferredWidth(125);*/
+        
+        DefaultTableModel modelo = (DefaultTableModel) Tabela_Pedidos.getModel();
+        modelo.setNumRows(0);
+        
+        try {
+            con_pedidos.resultset.beforeFirst();
+            while(con_pedidos.resultset.next()){
+                modelo.addRow(new Object[]{
+                    con_pedidos.resultset.getString("id_pedido"),con_pedidos.resultset.getString("id_cliente"),con_pedidos.resultset.getString("data"), con_pedidos.resultset.getString("valor_total"), con_pedidos.resultset.getString("status_pedido")
+                });
+            }
+        }catch(SQLException erro){
+            JOptionPane.showMessageDialog(null, "Erro ao listar a tabela");
+        }
+        
+        
+        
+        DefaultTableModel modelo2 = (DefaultTableModel) Tabela_Produtos_Pedidos.getModel();
+        modelo2.setNumRows(0);
+        
+        try {
+            con_produto_vendido.resultset.beforeFirst();
+            while(con_produto_vendido.resultset.next()){
+                modelo2.addRow(new Object[]{
+                    con_produto_vendido.resultset.getString("id_prod_vendido"),con_produto_vendido.resultset.getString("id_pedido"),con_produto_vendido.resultset.getString("id_produto"), con_produto_vendido.resultset.getString("quantidade"), con_produto_vendido.resultset.getString("preco_final")
+                });
+            }
+        }catch(SQLException erro){
+            JOptionPane.showMessageDialog(null, "Erro ao listar a tabela");
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Lupa;
@@ -274,7 +322,7 @@ public class Pedidos extends javax.swing.JFrame {
     private javax.swing.JTextField Pesquisar;
     private javax.swing.JTextField Pesquisar2;
     private javax.swing.JTable Tabela_Pedidos;
-    private javax.swing.JTable Tabela_Pedidos2;
+    private javax.swing.JTable Tabela_Produtos_Pedidos;
     private javax.swing.JLabel Titulo;
     private javax.swing.JLabel Titulo3;
     private javax.swing.JLabel jLabel1;
