@@ -14,9 +14,9 @@ import java.sql.SQLException;
  *
  * @author FATEC ZONA LESTE
  */
-public class Login extends javax.swing.JFrame {
+public class LoginEstoquista extends javax.swing.JFrame {
     Conexao conexao_cliente;
-    public Login() {
+    public LoginEstoquista() {
         // Título da página
         super ("Tela de Login");
         
@@ -181,7 +181,7 @@ public class Login extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Login().setVisible(true);
+                new LoginEstoquista().setVisible(true);
             }
         });
     }
