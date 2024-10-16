@@ -55,7 +55,7 @@ Conexao con_cliente;
 
         jScrollPane1.setBorder(null);
 
-        Tabela_Clientes.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        Tabela_Clientes.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         Tabela_Clientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
