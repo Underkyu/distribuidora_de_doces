@@ -16,8 +16,6 @@ import java.sql.*;
  */
 public class AdicionarProduto extends javax.swing.JFrame {
 Conexao con_produtos;
-Conexao con_fornecedor;
-Conexao con_categoria;
     /**
      * Creates new form Clientes
      */
@@ -137,7 +135,12 @@ Conexao con_categoria;
         jButton1.setBackground(new java.awt.Color(30, 187, 172));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(0, 0, 0));
-        jButton1.setText("Cadastrar\n");
+        jButton1.setText("Cadastrar ");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -229,6 +232,22 @@ Conexao con_categoria;
     private void idCategoriaProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idCategoriaProdutoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_idCategoriaProdutoActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String nome = nomeProduto.getText();
+        String valor = valorProduto.getText();
+        String idFornecedor = idFornecedorProduto.getText();
+        String idCategoria = idCategoriaProduto.getText();
+        String quantMinima = quantMinimaProduto.getText();
+        String quantEstoque = quantEstoqueProduto.getText();
+        
+        try{
+            String insert_sql="insert into produto (id_fornecedor,id_categoria,nome_produto,valor_unitario,quantidade_estoque,quantidade_minima) values ('" + idFornecedor + "','" +idCategoria + "','" + nome + "','" + valor + "','" + quantEstoque + "','" + quantMinima + "')";
+            con_produtos.statement.executeUpdate(insert_sql);
+        }catch(SQLException errosql){
+            JOptionPane.showMessageDialog(null, "Erro ao cadastrar");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
