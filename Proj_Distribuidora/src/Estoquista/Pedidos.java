@@ -30,6 +30,7 @@ public class Pedidos extends javax.swing.JFrame {
         con_produto_vendido.executaSQL("select * from produto_vendido order by id_prod_vendido");
         preenchaerTabela();
          getContentPane().setBackground(new Color(189,158,207));
+         setLocationRelativeTo(null);
     }
 
     /**

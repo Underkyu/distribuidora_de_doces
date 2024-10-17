@@ -34,6 +34,7 @@ Conexao con_categoria;
         con_categoria.executaSQL("select * from categoria order by id_categoria ");
         preenchaerTabela();
          getContentPane().setBackground(new Color(189,158,207));
+         setLocationRelativeTo(null);
     }
 
     /**

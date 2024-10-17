@@ -36,7 +36,7 @@ public class Conexao {
     /* Início dos métodos de conexão */
     
     // Método de abertura
-    public boolean conecta () {
+    public boolean conecta() {
         boolean result = true;
         try {
             Class.forName(driver);
@@ -53,7 +53,7 @@ public class Conexao {
     }
     
     // Método de fechamento
-    public void desconecta () {
+    public void desconecta() {
         try {
             conexao.close();
             JOptionPane.showMessageDialog(null, "Conexão com o banco fechada.", "Mensagem do Programa", JOptionPane.INFORMATION_MESSAGE);
@@ -62,7 +62,7 @@ public class Conexao {
     }
     
     // Método de execução dos comandos SQL
-    public void executaSQL (String sql) {
+    public void executaSQL(String sql) {
         try {
             statement = conexao.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
             resultset = statement.executeQuery(sql);

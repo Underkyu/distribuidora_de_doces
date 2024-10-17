@@ -174,9 +174,6 @@
       </SubComponents>
     </Container>
     <Component class="javax.swing.JTextField" name="nomeProduto">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Nome"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
@@ -188,9 +185,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="valorProduto">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Valor"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
@@ -202,9 +196,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="idFornecedorProduto">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Id do Fornecedor"/>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="idFornecedorProdutoActionPerformed"/>
       </Events>
@@ -228,9 +219,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="idCategoriaProduto">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Id da Categoria"/>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="idCategoriaProdutoActionPerformed"/>
       </Events>
@@ -245,9 +233,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="quantEstoqueProduto">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Quantidade no estoque"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel9">
       <Properties>
@@ -259,9 +244,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="quantMinimaProduto">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Quantidade minima"/>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="quantMinimaProdutoActionPerformed"/>
       </Events>
@@ -273,9 +255,6 @@
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="18" style="1"/>
-        </Property>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="0" red="0" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Cadastrar "/>
       </Properties>

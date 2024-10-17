@@ -81,19 +81,14 @@ Conexao con_produtos;
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
         );
 
-        nomeProduto.setText("Nome");
-
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Nome");
-
-        valorProduto.setText("Valor");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Valor");
 
-        idFornecedorProduto.setText("Id do Fornecedor");
         idFornecedorProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 idFornecedorProdutoActionPerformed(evt);
@@ -108,7 +103,6 @@ Conexao con_produtos;
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Quantidade minima");
 
-        idCategoriaProduto.setText("Id da Categoria");
         idCategoriaProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 idCategoriaProdutoActionPerformed(evt);
@@ -119,13 +113,10 @@ Conexao con_produtos;
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("Id da Categoria");
 
-        quantEstoqueProduto.setText("Quantidade no estoque");
-
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("Quantidade no Estoque");
 
-        quantMinimaProduto.setText("Quantidade minima");
         quantMinimaProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 quantMinimaProdutoActionPerformed(evt);
@@ -134,7 +125,6 @@ Conexao con_produtos;
 
         jButton1.setBackground(new java.awt.Color(30, 187, 172));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setText("Cadastrar ");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -242,9 +232,12 @@ Conexao con_produtos;
         String quantEstoque = quantEstoqueProduto.getText();
         
         try{
-            String insert_sql="insert into produto (id_fornecedor,id_categoria,nome_produto,valor_unitario,quantidade_estoque,quantidade_minima) values ('" + idFornecedor + "','" +idCategoria + "','" + nome + "','" + valor + "','" + quantEstoque + "','" + quantMinima + "')";
-            con_produtos.statement.executeUpdate(insert_sql);
-        }catch(SQLException errosql){
+            String insert_sql="INSERT INTO produto (id_fornecedor,id_categoria,nome_produto,valor_unitario,quantidade_estoque,quantidade_minima) "
+                    + "VALUES ("+idFornecedor+","+idCategoria+","+nome+","+valor+","+quantEstoque+","+quantMinima+");";
+            System.out.println(insert_sql);
+            con_produtos.executaSQL(insert_sql);
+            System.out.println("SELECT COM SUCESSO");
+        }catch(Exception erro){
             JOptionPane.showMessageDialog(null, "Erro ao cadastrar");
         }
     }//GEN-LAST:event_jButton1ActionPerformed

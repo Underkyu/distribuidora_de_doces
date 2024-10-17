@@ -73,15 +73,12 @@ Conexao con_categoria;
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
         );
 
-        nomeForncedor.setText("Nome");
-
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Nome");
 
         jButton1.setBackground(new java.awt.Color(30, 187, 172));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setText("Cadastrar\n");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
