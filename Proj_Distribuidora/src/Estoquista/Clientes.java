@@ -23,6 +23,8 @@ Conexao con_cliente;
      */
     public Clientes() {
         initComponents();
+                setLocationRelativeTo(null);
+
         con_cliente = new Conexao();
         con_cliente.conecta();
         con_cliente.executaSQL("select * from cliente order by id_cliente");
