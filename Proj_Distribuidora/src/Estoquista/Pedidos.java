@@ -44,11 +44,9 @@ public class Pedidos extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         Tabela_Pedidos = new javax.swing.JTable();
-        Pesquisar = new javax.swing.JTextField();
+        PesquisarPedidos = new javax.swing.JTextField();
         Lupa = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        Tabela_Produtos_Pedidos = new javax.swing.JTable();
-        Pesquisar2 = new javax.swing.JTextField();
+        PesquisarProdutoVendido = new javax.swing.JTextField();
         Lupa2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         Titulo = new javax.swing.JLabel();
@@ -56,6 +54,8 @@ public class Pedidos extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         Titulo3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        Tabela_Produtos_Pedidos = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         Clientes = new javax.swing.JButton();
         Produtos = new javax.swing.JToggleButton();
@@ -66,7 +66,7 @@ public class Pedidos extends javax.swing.JFrame {
 
         jScrollPane1.setBorder(null);
 
-        Tabela_Pedidos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Tabela_Pedidos.setBorder(javax.swing.BorderFactory.createLineBorder(null));
         Tabela_Pedidos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -88,43 +88,29 @@ public class Pedidos extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(Tabela_Pedidos);
 
-        Pesquisar.setText("Pesquisar\n");
-        Pesquisar.addActionListener(new java.awt.event.ActionListener() {
+        PesquisarPedidos.setText(" ");
+        PesquisarPedidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PesquisarActionPerformed(evt);
+                PesquisarPedidosActionPerformed(evt);
+            }
+        });
+        PesquisarPedidos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                PesquisarPedidosKeyReleased(evt);
             }
         });
 
         Lupa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Estoquista/lupa.png"))); // NOI18N
 
-        jScrollPane3.setBorder(null);
-
-        Tabela_Produtos_Pedidos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        Tabela_Produtos_Pedidos.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "Id", "Id_pedido", "Id_produito", "Quantidade", "Preço_final"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, true, true, true, true
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+        PesquisarProdutoVendido.setText(" ");
+        PesquisarProdutoVendido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PesquisarProdutoVendidoActionPerformed(evt);
             }
         });
-        jScrollPane3.setViewportView(Tabela_Produtos_Pedidos);
-
-        Pesquisar2.setText("Pesquisar\n");
-        Pesquisar2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Pesquisar2ActionPerformed(evt);
+        PesquisarProdutoVendido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                PesquisarProdutoVendidoKeyReleased(evt);
             }
         });
 
@@ -156,7 +142,7 @@ public class Pedidos extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(Titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(9, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -168,6 +154,30 @@ public class Pedidos extends javax.swing.JFrame {
         Titulo3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Titulo3.setText("Produto vendido");
 
+        jScrollPane3.setBorder(null);
+
+        Tabela_Produtos_Pedidos.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        Tabela_Produtos_Pedidos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Id", "Id_pedido", "Id_produito", "Quantidade", "Preço_final"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, true, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(Tabela_Produtos_Pedidos);
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -177,12 +187,20 @@ public class Pedidos extends javax.swing.JFrame {
                 .addComponent(Titulo3)
                 .addGap(51, 51, 51)
                 .addComponent(jLabel1)
-                .addContainerGap(92, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 557, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Titulo3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Titulo3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         jPanel2.setBackground(new java.awt.Color(137, 59, 182));
@@ -242,7 +260,7 @@ public class Pedidos extends javax.swing.JFrame {
                     .addComponent(Pedidos)
                     .addComponent(Produtos)
                     .addComponent(Clientes))
-                .addContainerGap(9, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -253,60 +271,52 @@ public class Pedidos extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(Lupa2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Pesquisar2, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 557, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(Lupa)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(PesquisarPedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 557, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(12, Short.MAX_VALUE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(Lupa2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(PesquisarProdutoVendido, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Lupa)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(2, 2, 2)
-                        .addComponent(Pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(39, 39, 39)
+                        .addComponent(PesquisarPedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Pesquisar2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PesquisarProdutoVendido, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Lupa2))
-                .addGap(44, 44, 44))
+                .addGap(24, 24, 24))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void PesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PesquisarActionPerformed
+    private void PesquisarPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PesquisarPedidosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_PesquisarActionPerformed
+    }//GEN-LAST:event_PesquisarPedidosActionPerformed
 
-    private void Pesquisar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Pesquisar2ActionPerformed
+    private void PesquisarProdutoVendidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PesquisarProdutoVendidoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_Pesquisar2ActionPerformed
+    }//GEN-LAST:event_PesquisarProdutoVendidoActionPerformed
 
     private void ClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClientesActionPerformed
         Clientes tela = new Clientes();
@@ -325,6 +335,36 @@ public class Pedidos extends javax.swing.JFrame {
         tela.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_PedidosActionPerformed
+
+    private void PesquisarPedidosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PesquisarPedidosKeyReleased
+        try{
+            String pesquisa = "select * from pedido where id_pedido like '"+ PesquisarPedidos.getText()+"%'" ;
+            con_pedidos.executaSQL(pesquisa);
+            
+            if(con_pedidos.resultset.first()){
+                preenchaerTabela();
+            }else{
+                JOptionPane.showMessageDialog(null, "Não existem dados com esse parametro");
+            }
+        }catch(SQLException error){
+                JOptionPane.showMessageDialog(null,"Dados não localizados");
+        }
+    }//GEN-LAST:event_PesquisarPedidosKeyReleased
+
+    private void PesquisarProdutoVendidoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PesquisarProdutoVendidoKeyReleased
+        try{
+            String pesquisa = "select * from produto_vendido where id_prod_vendido like '"+ PesquisarProdutoVendido.getText()+"%'" ;
+            con_produto_vendido.executaSQL(pesquisa);
+            
+            if(con_produto_vendido.resultset.first()){
+                preenchaerTabela();
+            }else{
+                JOptionPane.showMessageDialog(null, "Não existem dados com esse parametro");
+            }
+        }catch(SQLException error){
+                JOptionPane.showMessageDialog(null,"Dados não localizados");
+        }
+    }//GEN-LAST:event_PesquisarProdutoVendidoKeyReleased
 
     /**
      * @param args the command line arguments
@@ -406,8 +446,8 @@ public class Pedidos extends javax.swing.JFrame {
     private javax.swing.JLabel Lupa;
     private javax.swing.JLabel Lupa2;
     private javax.swing.JToggleButton Pedidos;
-    private javax.swing.JTextField Pesquisar;
-    private javax.swing.JTextField Pesquisar2;
+    private javax.swing.JTextField PesquisarPedidos;
+    private javax.swing.JTextField PesquisarProdutoVendido;
     private javax.swing.JToggleButton Produtos;
     private javax.swing.JTable Tabela_Pedidos;
     private javax.swing.JTable Tabela_Produtos_Pedidos;

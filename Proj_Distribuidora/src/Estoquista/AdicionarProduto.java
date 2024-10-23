@@ -225,20 +225,24 @@ Conexao con_produtos;
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String nome = nomeProduto.getText();
-        String valor = valorProduto.getText();
-        String idFornecedor = idFornecedorProduto.getText();
-        String idCategoria = idCategoriaProduto.getText();
-        String quantMinima = quantMinimaProduto.getText();
-        String quantEstoque = quantEstoqueProduto.getText();
+        double valor =  Double.parseDouble(valorProduto.getText());
+        int idFornecedor = Integer.parseInt(idFornecedorProduto.getText());
+        int idCategoria = Integer.parseInt(idCategoriaProduto.getText());
+        int quantMinima = Integer.parseInt(quantMinimaProduto.getText());
+        int quantEstoque = Integer.parseInt(quantEstoqueProduto.getText());
         
         try{
-            String insert_sql="INSERT INTO produto (id_fornecedor,id_categoria,nome_produto,valor_unitario,quantidade_estoque,quantidade_minima) "
-                    + "VALUES ("+idFornecedor+","+idCategoria+","+nome+","+valor+","+quantEstoque+","+quantMinima+");";
+            String insert_sql="insert into `produto` (`id_fornecedor`,`id_categoria`,`nome_produto`,`valor_unitario`,`quantidade_estoque`,`quantidade_minima`) "
+                    + "values ("+idFornecedor+","+idCategoria+",'"+nome+"',"+valor+","+quantEstoque+","+quantMinima+")";
             System.out.println(insert_sql);
-            con_produtos.executaSQL(insert_sql);
-            System.out.println("SELECT COM SUCESSO");
+            con_produtos.statement.executeUpdate(insert_sql);
+            JOptionPane.showMessageDialog(null, "Cadastrado com sucesso");
+            Produtos tela = new Produtos();
+            tela.setVisible(true);
+            setVisible(false);
         }catch(Exception erro){
             JOptionPane.showMessageDialog(null, "Erro ao cadastrar");
+            System.out.println(erro);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

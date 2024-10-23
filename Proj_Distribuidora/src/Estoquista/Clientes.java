@@ -58,7 +58,7 @@ Conexao con_cliente;
 
         jScrollPane1.setBorder(null);
 
-        Tabela_Clientes.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Tabela_Clientes.setBorder(javax.swing.BorderFactory.createLineBorder(null));
         Tabela_Clientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
@@ -84,6 +84,11 @@ Conexao con_cliente;
         Pesquisa_input.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Pesquisa_inputActionPerformed(evt);
+            }
+        });
+        Pesquisa_input.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                Pesquisa_inputKeyReleased(evt);
             }
         });
 
@@ -174,7 +179,7 @@ Conexao con_cliente;
                     .addComponent(Pedidos)
                     .addComponent(Produtos)
                     .addComponent(Clientes))
-                .addContainerGap(9, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -220,7 +225,7 @@ Conexao con_cliente;
     }// </editor-fold>//GEN-END:initComponents
 
     private void Pesquisa_inputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Pesquisa_inputActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_Pesquisa_inputActionPerformed
 
     private void ClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClientesActionPerformed
@@ -240,6 +245,21 @@ Conexao con_cliente;
         tela.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_PedidosActionPerformed
+
+    private void Pesquisa_inputKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Pesquisa_inputKeyReleased
+        try{
+            String pesquisa = "select * from cliente where nome_cliente like '"+ Pesquisa_input.getText()+"%'" ;
+            con_cliente.executaSQL(pesquisa);
+            
+            if(con_cliente.resultset.first()){
+                preenchaerTabela();
+            }else{
+                JOptionPane.showMessageDialog(null, "Não existem dados com esse parametro");
+            }
+        }catch(SQLException error){
+                JOptionPane.showMessageDialog(null,"Dados não localizados");
+        }
+    }//GEN-LAST:event_Pesquisa_inputKeyReleased
 
     public void preenchaerTabela(){
         Tabela_Clientes.getColumnModel().getColumn(1).setPreferredWidth(150);
