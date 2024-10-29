@@ -36,24 +36,27 @@ public class Conexao {
     /* Início dos métodos de conexão */
     
     // Método de abertura
-    public boolean conecta() {
-        boolean result = true;
-        try {
-            Class.forName(driver);
-            conexao = DriverManager.getConnection(url, usuario, senha);
-            JOptionPane.showMessageDialog(null, "Conexão estabelecida.", "Mensagem do Programa", JOptionPane.INFORMATION_MESSAGE);
-        } catch (ClassNotFoundException Driver) {
-            JOptionPane.showMessageDialog(null, "Driver não localizado." +Driver, "Mensagem do Programa", JOptionPane.INFORMATION_MESSAGE);
-            result = false;
-        } catch (SQLException Fonte) {
-            JOptionPane.showMessageDialog(null, "Fontes de dados não localizadas." +Fonte, "Mensagem do Programa", JOptionPane.INFORMATION_MESSAGE);
-            result = false;
-        }
-        return result;
+   public Connection conecta() {
+    try {
+        Class.forName(driver);
+        conexao = DriverManager.getConnection(url, usuario, senha);
+        JOptionPane.showMessageDialog(null, "Conexão estabelecida.", "Mensagem do Programa", JOptionPane.INFORMATION_MESSAGE);
+        return conexao; // Retorna a conexão
+    } catch (ClassNotFoundException Driver) {
+        JOptionPane.showMessageDialog(null, "Driver não localizado: " + Driver, "Mensagem do Programa", JOptionPane.INFORMATION_MESSAGE);
+        return null; // Retorna null em caso de erro
+    } catch (SQLException Fonte) {
+        JOptionPane.showMessageDialog(null, "Fontes de dados não localizadas: " + Fonte, "Mensagem do Programa", JOptionPane.INFORMATION_MESSAGE);
+        return null; // Retorna null em caso de erro
+        
+        
     }
     
+}
+
+    
     // Método de fechamento
-    public void desconecta() {
+    public void desconecta () {
         try {
             conexao.close();
             JOptionPane.showMessageDialog(null, "Conexão com o banco fechada.", "Mensagem do Programa", JOptionPane.INFORMATION_MESSAGE);
@@ -62,13 +65,17 @@ public class Conexao {
     }
     
     // Método de execução dos comandos SQL
-    public void executaSQL(String sql) {
+    public void executaSQL (String sql) {
         try {
             statement = conexao.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
             resultset = statement.executeQuery(sql);
         } catch (SQLException excecao) {
         JOptionPane.showMessageDialog(null, "Erro no comando SQL! \n Erro:" +excecao, "Mensagem do Programa", JOptionPane.INFORMATION_MESSAGE);
         }
+    }
+
+    public com.mysql.jdbc.PreparedStatement prepareStatement(String insert_sql) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
 }
