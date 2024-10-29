@@ -200,7 +200,7 @@ public class LoginAluno extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
      try {
-    String pesquisa = "select * from cliente where cpf_cliente like '" + campoCpf.getText() + "' && nome_cliente = '" + SenhaCampo.getText() + "'";
+    String pesquisa = "select * from cliente where cpf_cliente like '" + campoCpf.getText() + "' && senha = '" + SenhaCampo.getText() + "'";
            conexao_Cliente.executaSQL(pesquisa);
            
            if (conexao_Cliente.resultset.first()) {
