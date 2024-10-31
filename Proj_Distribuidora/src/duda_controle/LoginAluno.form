@@ -198,7 +198,7 @@
     <Component class="javax.swing.JLabel" name="jLabel8">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/controle/login-do-usuario (3).png"/>
+          <Image iconType="3" name="/duda_controle/login-do-usuario (3).png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="jLabel8"/>
       </Properties>
@@ -206,7 +206,7 @@
     <Component class="javax.swing.JLabel" name="jLabel9">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/controle/linha.png"/>
+          <Image iconType="3" name="/duda_controle/linha.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="jLabel9"/>
       </Properties>

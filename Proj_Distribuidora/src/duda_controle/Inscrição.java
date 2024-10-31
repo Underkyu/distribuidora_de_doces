@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package controle;
+package duda_controle;
 
 import Conexao.Conexao;
 import java.sql.PreparedStatement;
@@ -119,10 +119,10 @@ public class Inscrição extends javax.swing.JFrame {
             }
         });
 
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/controle/conecte-se (1).png"))); // NOI18N
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/duda_controle/conecte-se (1).png"))); // NOI18N
         jLabel11.setText("jLabel11");
 
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/controle/linha.png"))); // NOI18N
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/duda_controle/linha.png"))); // NOI18N
         jLabel12.setText("jLabel12");
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N

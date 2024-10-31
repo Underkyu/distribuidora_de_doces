@@ -55,7 +55,7 @@ Conexao con_categoria;
         Titulo3.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         Titulo3.setForeground(new java.awt.Color(255, 255, 255));
         Titulo3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Titulo3.setText("Cadastrar Fornecedor");
+        Titulo3.setText("Cadastrar Categoria");
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Estoquista/linhas-de-opcoes.png"))); // NOI18N
 
@@ -68,7 +68,7 @@ Conexao con_categoria;
                 .addComponent(Titulo3)
                 .addGap(32, 32, 32)
                 .addComponent(jLabel1)
-                .addContainerGap(162, Short.MAX_VALUE))
+                .addContainerGap(190, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -83,6 +83,11 @@ Conexao con_categoria;
         jButton1.setBackground(new java.awt.Color(30, 187, 172));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton1.setText("Cadastrar\n");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -116,6 +121,10 @@ Conexao con_categoria;
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

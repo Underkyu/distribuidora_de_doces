@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package controle;
+package duda_controle;
 
 /**
  *
@@ -42,7 +42,7 @@ public class PagDeCargos extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(204, 204, 204));
         jButton1.setFont(new java.awt.Font("Square721 Cn BT", 1, 20)); // NOI18N
         jButton1.setForeground(new java.awt.Color(204, 51, 255));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/controle/comprador.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/duda_controle/comprador.png"))); // NOI18N
         jButton1.setText("Cliente");
         jButton1.setVerticalTextPosition(SwingConstants.BOTTOM);
         jButton1.setHorizontalTextPosition(SwingConstants.CENTER);
@@ -55,7 +55,7 @@ public class PagDeCargos extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(204, 204, 204));
         jButton2.setFont(new java.awt.Font("Square721 BT", 1, 18)); // NOI18N
         jButton2.setForeground(new java.awt.Color(204, 51, 255));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/controle/estoque.png"))); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/duda_controle/estoque.png"))); // NOI18N
         jButton2.setText("Funcionário");
         jButton2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jButton2.setVerticalTextPosition(SwingConstants.BOTTOM);

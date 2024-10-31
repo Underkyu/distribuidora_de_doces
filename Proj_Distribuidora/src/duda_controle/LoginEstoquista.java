@@ -2,10 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package controle;
+package duda_controle;
 
 // Imports das bibliotecas
 import Conexao.Conexao;
+import duda_controle.Login;
+import duda_controle.PagDeCargos;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.sql.*;
