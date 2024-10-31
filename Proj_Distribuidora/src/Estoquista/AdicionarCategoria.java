@@ -26,6 +26,7 @@ Conexao con_categoria;
         con_produtos = new Conexao();
         con_produtos.conecta();
          getContentPane().setBackground(new Color(43,0,87));
+         setLocationRelativeTo(null);
     }
 
     /**

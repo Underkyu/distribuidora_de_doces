@@ -26,6 +26,7 @@ Conexao con_categoria;
         con_produtos = new Conexao();
         con_produtos.conecta();
          getContentPane().setBackground(new Color(43,0,87));
+         setLocationRelativeTo(null);
     }
 
     /**
@@ -106,6 +107,7 @@ Conexao con_categoria;
 
         jButton1.setBackground(new java.awt.Color(102, 0, 204));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Cadastrar\n");
 
         jPanel2.setBackground(new java.awt.Color(102, 0, 204));
