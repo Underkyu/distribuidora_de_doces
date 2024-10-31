@@ -29,7 +29,7 @@ public class Pedidos extends javax.swing.JFrame {
         con_produto_vendido.conecta();
         con_produto_vendido.executaSQL("select * from produto_vendido order by id_prod_vendido");
         preenchaerTabela();
-         getContentPane().setBackground(new Color(189,158,207));
+         getContentPane().setBackground(new Color(43,0,87));
          setLocationRelativeTo(null);
     }
 
@@ -119,10 +119,10 @@ public class Pedidos extends javax.swing.JFrame {
 
         Lupa2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Estoquista/lupa.png"))); // NOI18N
 
-        jPanel1.setBackground(new java.awt.Color(137, 59, 182));
+        jPanel1.setBackground(new java.awt.Color(102, 0, 204));
 
         Titulo.setBackground(new java.awt.Color(255, 255, 255));
-        Titulo.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        Titulo.setFont(new java.awt.Font("Geometr212 BkCn BT", 1, 36)); // NOI18N
         Titulo.setForeground(new java.awt.Color(255, 255, 255));
         Titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Titulo.setText("Pedidos");
@@ -146,10 +146,10 @@ public class Pedidos extends javax.swing.JFrame {
             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
         );
 
-        jPanel3.setBackground(new java.awt.Color(137, 59, 182));
+        jPanel3.setBackground(new java.awt.Color(102, 0, 204));
 
         Titulo3.setBackground(new java.awt.Color(255, 255, 255));
-        Titulo3.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        Titulo3.setFont(new java.awt.Font("Geometr212 BkCn BT", 1, 36)); // NOI18N
         Titulo3.setForeground(new java.awt.Color(255, 255, 255));
         Titulo3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Titulo3.setText("Produto vendido");
@@ -182,16 +182,16 @@ public class Pedidos extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel2.setBackground(new java.awt.Color(137, 59, 182));
+        jPanel2.setBackground(new java.awt.Color(102, 0, 204));
 
         Titulo1.setBackground(new java.awt.Color(255, 255, 255));
-        Titulo1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        Titulo1.setFont(new java.awt.Font("Geometr212 BkCn BT", 1, 36)); // NOI18N
         Titulo1.setForeground(new java.awt.Color(255, 255, 255));
         Titulo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Titulo1.setText("Distribuidora de doces");
 
-        Clientes.setBackground(new java.awt.Color(137, 59, 182));
-        Clientes.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        Clientes.setBackground(new java.awt.Color(102, 0, 204));
+        Clientes.setFont(new java.awt.Font("Geometr212 BkCn BT", 1, 18)); // NOI18N
         Clientes.setForeground(new java.awt.Color(255, 255, 255));
         Clientes.setText("Clientes");
         Clientes.addActionListener(new java.awt.event.ActionListener() {
@@ -200,8 +200,8 @@ public class Pedidos extends javax.swing.JFrame {
             }
         });
 
-        Produtos.setBackground(new java.awt.Color(137, 59, 182));
-        Produtos.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        Produtos.setBackground(new java.awt.Color(102, 0, 204));
+        Produtos.setFont(new java.awt.Font("Geometr212 BkCn BT", 1, 18)); // NOI18N
         Produtos.setForeground(new java.awt.Color(255, 255, 255));
         Produtos.setText("Produtos");
         Produtos.addActionListener(new java.awt.event.ActionListener() {
@@ -210,8 +210,8 @@ public class Pedidos extends javax.swing.JFrame {
             }
         });
 
-        Pedidos.setBackground(new java.awt.Color(137, 59, 182));
-        Pedidos.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        Pedidos.setBackground(new java.awt.Color(102, 0, 204));
+        Pedidos.setFont(new java.awt.Font("Geometr212 BkCn BT", 1, 18)); // NOI18N
         Pedidos.setForeground(new java.awt.Color(255, 255, 255));
         Pedidos.setText("Pedidos");
         Pedidos.addActionListener(new java.awt.event.ActionListener() {
@@ -225,16 +225,16 @@ public class Pedidos extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(Titulo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Titulo1, javax.swing.GroupLayout.DEFAULT_SIZE, 612, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
+                .addGap(40, 40, 40)
                 .addComponent(Clientes)
-                .addGap(95, 95, 95)
+                .addGap(97, 97, 97)
                 .addComponent(Produtos)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Pedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23))
+                .addGap(59, 59, 59))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

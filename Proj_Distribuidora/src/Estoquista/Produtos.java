@@ -33,7 +33,7 @@ Conexao con_categoria;
         con_categoria.conecta();
         con_categoria.executaSQL("select * from categoria order by id_categoria ");
         preenchaerTabela();
-         getContentPane().setBackground(new Color(189,158,207));
+         getContentPane().setBackground(new Color(43,0,87));
          setLocationRelativeTo(null);
     }
 
@@ -195,10 +195,10 @@ Conexao con_categoria;
 
         Lupa3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Estoquista/lupa.png"))); // NOI18N
 
-        jPanel3.setBackground(new java.awt.Color(137, 59, 182));
+        jPanel3.setBackground(new java.awt.Color(102, 0, 204));
 
         Titulo3.setBackground(new java.awt.Color(255, 255, 255));
-        Titulo3.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        Titulo3.setFont(new java.awt.Font("Geometr212 BkCn BT", 1, 36)); // NOI18N
         Titulo3.setForeground(new java.awt.Color(255, 255, 255));
         Titulo3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Titulo3.setText("Produtos");
@@ -225,10 +225,10 @@ Conexao con_categoria;
                 .addContainerGap())
         );
 
-        jPanel1.setBackground(new java.awt.Color(137, 59, 182));
+        jPanel1.setBackground(new java.awt.Color(102, 0, 204));
 
         Titulo.setBackground(new java.awt.Color(255, 255, 255));
-        Titulo.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        Titulo.setFont(new java.awt.Font("Geometr212 BkCn BT", 1, 36)); // NOI18N
         Titulo.setForeground(new java.awt.Color(255, 255, 255));
         Titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Titulo.setText("Fornecedor");
@@ -255,10 +255,10 @@ Conexao con_categoria;
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel13.setBackground(new java.awt.Color(137, 59, 182));
+        jPanel13.setBackground(new java.awt.Color(102, 0, 204));
 
         Titulo14.setBackground(new java.awt.Color(255, 255, 255));
-        Titulo14.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        Titulo14.setFont(new java.awt.Font("Geometr212 BkCn BT", 1, 36)); // NOI18N
         Titulo14.setForeground(new java.awt.Color(255, 255, 255));
         Titulo14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Titulo14.setText("Categorias");
@@ -286,43 +286,43 @@ Conexao con_categoria;
                 .addGap(12, 12, 12))
         );
 
-        AdicionarFornecedor.setBackground(new java.awt.Color(30, 187, 172));
+        AdicionarFornecedor.setBackground(new java.awt.Color(102, 0, 204));
         AdicionarFornecedor.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
-        AdicionarFornecedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Estoquista/mais.png"))); // NOI18N
+        AdicionarFornecedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Estoquista/mais (1).png"))); // NOI18N
         AdicionarFornecedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AdicionarFornecedorActionPerformed(evt);
             }
         });
 
-        Adicionarcategoria.setBackground(new java.awt.Color(30, 187, 172));
+        Adicionarcategoria.setBackground(new java.awt.Color(102, 0, 204));
         Adicionarcategoria.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
-        Adicionarcategoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Estoquista/mais.png"))); // NOI18N
+        Adicionarcategoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Estoquista/mais (1).png"))); // NOI18N
         Adicionarcategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AdicionarcategoriaActionPerformed(evt);
             }
         });
 
-        adicionarProduto.setBackground(new java.awt.Color(30, 187, 172));
+        adicionarProduto.setBackground(new java.awt.Color(102, 0, 204));
         adicionarProduto.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
-        adicionarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Estoquista/mais.png"))); // NOI18N
+        adicionarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Estoquista/mais (1).png"))); // NOI18N
         adicionarProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 adicionarProdutoActionPerformed(evt);
             }
         });
 
-        jPanel2.setBackground(new java.awt.Color(137, 59, 182));
+        jPanel2.setBackground(new java.awt.Color(102, 0, 204));
 
         Titulo1.setBackground(new java.awt.Color(255, 255, 255));
-        Titulo1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        Titulo1.setFont(new java.awt.Font("Geometr212 BkCn BT", 1, 36)); // NOI18N
         Titulo1.setForeground(new java.awt.Color(255, 255, 255));
         Titulo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Titulo1.setText("Distribuidora de doces");
 
-        Clientes.setBackground(new java.awt.Color(137, 59, 182));
-        Clientes.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        Clientes.setBackground(new java.awt.Color(102, 0, 204));
+        Clientes.setFont(new java.awt.Font("Geometr212 BkCn BT", 1, 18)); // NOI18N
         Clientes.setForeground(new java.awt.Color(255, 255, 255));
         Clientes.setText("Clientes");
         Clientes.addActionListener(new java.awt.event.ActionListener() {
@@ -331,8 +331,8 @@ Conexao con_categoria;
             }
         });
 
-        Produtos.setBackground(new java.awt.Color(137, 59, 182));
-        Produtos.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        Produtos.setBackground(new java.awt.Color(102, 0, 204));
+        Produtos.setFont(new java.awt.Font("Geometr212 BkCn BT", 1, 18)); // NOI18N
         Produtos.setForeground(new java.awt.Color(255, 255, 255));
         Produtos.setText("Produtos");
         Produtos.addActionListener(new java.awt.event.ActionListener() {
@@ -341,8 +341,8 @@ Conexao con_categoria;
             }
         });
 
-        Pedidos.setBackground(new java.awt.Color(137, 59, 182));
-        Pedidos.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        Pedidos.setBackground(new java.awt.Color(102, 0, 204));
+        Pedidos.setFont(new java.awt.Font("Geometr212 BkCn BT", 1, 18)); // NOI18N
         Pedidos.setForeground(new java.awt.Color(255, 255, 255));
         Pedidos.setText("Pedidos");
         Pedidos.addActionListener(new java.awt.event.ActionListener() {
@@ -376,7 +376,7 @@ Conexao con_categoria;
                     .addComponent(Pedidos)
                     .addComponent(Produtos)
                     .addComponent(Clientes))
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -445,7 +445,7 @@ Conexao con_categoria;
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

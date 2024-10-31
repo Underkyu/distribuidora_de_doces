@@ -25,7 +25,7 @@ Conexao con_categoria;
         initComponents();
         con_produtos = new Conexao();
         con_produtos.conecta();
-         getContentPane().setBackground(new Color(189,158,207));
+         getContentPane().setBackground(new Color(43,0,87));
     }
 
     /**
@@ -44,15 +44,21 @@ Conexao con_categoria;
         nomeForncedor = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        Fornecedor = new javax.swing.JButton();
+        Produtos = new javax.swing.JToggleButton();
+        Categoria = new javax.swing.JToggleButton();
+        Titulo = new javax.swing.JLabel();
+        Voltar = new javax.swing.JButton();
 
         jFormattedTextField1.setText("jFormattedTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel3.setBackground(new java.awt.Color(137, 59, 182));
+        jPanel3.setBackground(new java.awt.Color(102, 0, 204));
 
         Titulo3.setBackground(new java.awt.Color(255, 255, 255));
-        Titulo3.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        Titulo3.setFont(new java.awt.Font("Geometr212 BkCn BT", 1, 36)); // NOI18N
         Titulo3.setForeground(new java.awt.Color(255, 255, 255));
         Titulo3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Titulo3.setText("Cadastrar Categoria");
@@ -64,11 +70,11 @@ Conexao con_categoria;
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(110, 110, 110)
+                .addContainerGap(54, Short.MAX_VALUE)
                 .addComponent(Titulo3)
-                .addGap(32, 32, 32)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel1)
-                .addContainerGap(190, Short.MAX_VALUE))
+                .addGap(81, 81, 81))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -76,12 +82,15 @@ Conexao con_categoria;
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
         );
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLabel4.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel4.setFont(new java.awt.Font("Bahnschrift", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Nome");
 
-        jButton1.setBackground(new java.awt.Color(30, 187, 172));
+        jButton1.setBackground(new java.awt.Color(102, 0, 204));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Cadastrar\n");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -89,32 +98,115 @@ Conexao con_categoria;
             }
         });
 
+        jPanel2.setBackground(new java.awt.Color(102, 0, 204));
+
+        Fornecedor.setBackground(new java.awt.Color(102, 0, 204));
+        Fornecedor.setFont(new java.awt.Font("Geometr212 BkCn BT", 1, 18)); // NOI18N
+        Fornecedor.setForeground(new java.awt.Color(255, 255, 255));
+        Fornecedor.setText("Fornecedor");
+        Fornecedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FornecedorActionPerformed(evt);
+            }
+        });
+
+        Produtos.setBackground(new java.awt.Color(102, 0, 204));
+        Produtos.setFont(new java.awt.Font("Geometr212 BkCn BT", 1, 18)); // NOI18N
+        Produtos.setForeground(new java.awt.Color(255, 255, 255));
+        Produtos.setText("Produtos");
+        Produtos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ProdutosActionPerformed(evt);
+            }
+        });
+
+        Categoria.setBackground(new java.awt.Color(102, 0, 204));
+        Categoria.setFont(new java.awt.Font("Geometr212 BkCn BT", 1, 18)); // NOI18N
+        Categoria.setForeground(new java.awt.Color(255, 255, 255));
+        Categoria.setText("Categoria");
+        Categoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CategoriaActionPerformed(evt);
+            }
+        });
+
+        Titulo.setBackground(new java.awt.Color(255, 255, 255));
+        Titulo.setFont(new java.awt.Font("Geometr212 BkCn BT", 1, 36)); // NOI18N
+        Titulo.setForeground(new java.awt.Color(255, 255, 255));
+        Titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Titulo.setText("Distribuidora de doces  - Cadastrar");
+
+        Voltar.setBackground(new java.awt.Color(102, 0, 204));
+        Voltar.setFont(new java.awt.Font("Geometr212 BkCn BT", 1, 18)); // NOI18N
+        Voltar.setForeground(new java.awt.Color(255, 255, 255));
+        Voltar.setText("Voltar");
+        Voltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VoltarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(85, 85, 85)
+                .addComponent(Produtos)
+                .addGap(62, 62, 62)
+                .addComponent(Fornecedor)
+                .addGap(66, 66, 66)
+                .addComponent(Categoria)
+                .addGap(51, 51, 51)
+                .addComponent(Voltar)
+                .addContainerGap(47, Short.MAX_VALUE))
+            .addComponent(Titulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addComponent(Titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(3, 3, 3)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Categoria)
+                    .addComponent(Produtos)
+                    .addComponent(Fornecedor)
+                    .addComponent(Voltar))
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(312, 312, 312)
+                        .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(288, 288, 288)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(nomeForncedor)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(312, 312, 312)
-                        .addComponent(jButton1)))
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(89, 89, 89))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(nomeForncedor, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addGap(39, 39, 39)
                 .addComponent(jButton1)
                 .addGap(20, 20, 20))
         );
@@ -125,6 +217,30 @@ Conexao con_categoria;
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void FornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FornecedorActionPerformed
+        AdicionarFornecedor tela = new AdicionarFornecedor();
+        tela.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_FornecedorActionPerformed
+
+    private void ProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProdutosActionPerformed
+        AdicionarProduto tela = new AdicionarProduto();
+        tela.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_ProdutosActionPerformed
+
+    private void CategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CategoriaActionPerformed
+        AdicionarCategoria tela = new AdicionarCategoria();
+        tela.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_CategoriaActionPerformed
+
+    private void VoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VoltarActionPerformed
+        Produtos tela = new Produtos();
+        tela.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_VoltarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -194,11 +310,17 @@ Conexao con_categoria;
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton Categoria;
+    private javax.swing.JButton Fornecedor;
+    private javax.swing.JToggleButton Produtos;
+    private javax.swing.JLabel Titulo;
     private javax.swing.JLabel Titulo3;
+    private javax.swing.JButton Voltar;
     private javax.swing.JButton jButton1;
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField nomeForncedor;
     // End of variables declaration//GEN-END:variables

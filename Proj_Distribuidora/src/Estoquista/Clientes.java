@@ -29,7 +29,7 @@ Conexao con_cliente;
         con_cliente.conecta();
         con_cliente.executaSQL("select * from cliente order by id_cliente");
         preenchaerTabela();
-        getContentPane().setBackground(new Color(189,158,207));
+        getContentPane().setBackground(new Color(43,0,87));
     }
 
     /**
@@ -96,13 +96,13 @@ Conexao con_cliente;
 
         Lupa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Estoquista/lupa.png"))); // NOI18N
 
-        Bloquear.setBackground(new java.awt.Color(30, 187, 172));
+        Bloquear.setBackground(new java.awt.Color(102, 0, 204));
         Bloquear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Estoquista/Bloquear.png"))); // NOI18N
 
-        jPanel1.setBackground(new java.awt.Color(137, 59, 182));
+        jPanel1.setBackground(new java.awt.Color(102, 0, 204));
 
         Titulo1.setBackground(new java.awt.Color(255, 255, 255));
-        Titulo1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        Titulo1.setFont(new java.awt.Font("Geometr212 BkCn BT", 1, 36)); // NOI18N
         Titulo1.setForeground(new java.awt.Color(255, 255, 255));
         Titulo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Titulo1.setText("Clientes");
@@ -118,7 +118,7 @@ Conexao con_cliente;
                 .addComponent(Titulo1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
-                .addContainerGap(216, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,10 +130,10 @@ Conexao con_cliente;
                 .addGap(24, 24, 24))
         );
 
-        jPanel2.setBackground(new java.awt.Color(137, 59, 182));
+        jPanel2.setBackground(new java.awt.Color(102, 0, 204));
 
-        Clientes.setBackground(new java.awt.Color(137, 59, 182));
-        Clientes.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        Clientes.setBackground(new java.awt.Color(102, 0, 204));
+        Clientes.setFont(new java.awt.Font("Geometr212 BkCn BT", 1, 18)); // NOI18N
         Clientes.setForeground(new java.awt.Color(255, 255, 255));
         Clientes.setText("Clientes");
         Clientes.addActionListener(new java.awt.event.ActionListener() {
@@ -142,8 +142,8 @@ Conexao con_cliente;
             }
         });
 
-        Produtos.setBackground(new java.awt.Color(137, 59, 182));
-        Produtos.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        Produtos.setBackground(new java.awt.Color(102, 0, 204));
+        Produtos.setFont(new java.awt.Font("Geometr212 BkCn BT", 1, 18)); // NOI18N
         Produtos.setForeground(new java.awt.Color(255, 255, 255));
         Produtos.setText("Produtos");
         Produtos.addActionListener(new java.awt.event.ActionListener() {
@@ -152,8 +152,8 @@ Conexao con_cliente;
             }
         });
 
-        Pedidos.setBackground(new java.awt.Color(137, 59, 182));
-        Pedidos.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        Pedidos.setBackground(new java.awt.Color(102, 0, 204));
+        Pedidos.setFont(new java.awt.Font("Geometr212 BkCn BT", 1, 18)); // NOI18N
         Pedidos.setForeground(new java.awt.Color(255, 255, 255));
         Pedidos.setText("Pedidos");
         Pedidos.addActionListener(new java.awt.event.ActionListener() {
@@ -163,7 +163,7 @@ Conexao con_cliente;
         });
 
         Titulo.setBackground(new java.awt.Color(255, 255, 255));
-        Titulo.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        Titulo.setFont(new java.awt.Font("Geometr212 BkCn BT", 1, 36)); // NOI18N
         Titulo.setForeground(new java.awt.Color(255, 255, 255));
         Titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Titulo.setText("Distribuidora de doces");
@@ -177,11 +177,11 @@ Conexao con_cliente;
                 .addComponent(Clientes)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Produtos)
-                .addGap(147, 147, 147)
+                .addGap(164, 164, 164)
                 .addComponent(Pedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(77, 77, 77))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(Titulo, javax.swing.GroupLayout.DEFAULT_SIZE, 811, Short.MAX_VALUE)
+                .addComponent(Titulo, javax.swing.GroupLayout.DEFAULT_SIZE, 813, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -201,21 +201,20 @@ Conexao con_cliente;
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(93, Short.MAX_VALUE)
+                .addContainerGap(95, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 665, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(Lupa)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(Pesquisa_input, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Bloquear, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(40, 40, 40))))
+                        .addComponent(Lupa)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Pesquisa_input, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Bloquear, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(448, 448, 448))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 665, Short.MAX_VALUE))
+                        .addContainerGap())))
             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
