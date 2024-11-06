@@ -68,7 +68,7 @@
           <Color blue="ff" green="33" red="cc" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/duda_controle/comprador.png"/>
+          <Image iconType="3" name="/Controle/Imagens/comprador.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Cliente"/>
       </Properties>
@@ -91,7 +91,7 @@
           <Color blue="ff" green="33" red="cc" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/duda_controle/estoque.png"/>
+          <Image iconType="3" name="/Controle/Imagens/estoque.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Funcion&#xe1;rio"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">

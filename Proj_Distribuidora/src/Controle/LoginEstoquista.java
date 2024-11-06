@@ -2,13 +2,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package duda_controle;
+package Controle;
 
 // Imports das bibliotecas
 import Conexao.Conexao;
-import duda_controle.Login;
-import duda_controle.PagDeCargos;
+import javax.swing.border.TitledBorder;
+import javax.swing.BorderFactory;
+import Estoquista.Clientes;
+import Controle.PagDeCargos;
+import java.awt.Font;
 import java.awt.Color;
+import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import javax.sql.*;
 import java.sql.SQLException;
@@ -25,6 +29,9 @@ public class LoginEstoquista extends javax.swing.JFrame {
         // Inicialização dos componentes 
         initComponents();
         
+        
+                setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Controle/Imagens/icon.png")));
+
         // Mudando a cor do fundo da página
         getContentPane().setBackground(new Color(189, 158, 207));
         
@@ -61,7 +68,7 @@ public class LoginEstoquista extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         usuarioCampo.setBackground(new java.awt.Color(43, 0, 87));
-        usuarioCampo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CPF:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Geometr212 BkCn BT", 0, 18), new java.awt.Color(255, 255, 255))); // NOI18N
+        usuarioCampo.setBorder(null);
         usuarioCampo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 usuarioCampoActionPerformed(evt);
@@ -70,7 +77,7 @@ public class LoginEstoquista extends javax.swing.JFrame {
 
         campoSenha.setBackground(new java.awt.Color(43, 0, 87));
         campoSenha.setFont(new java.awt.Font("Geometr212 BkCn BT", 0, 14)); // NOI18N
-        campoSenha.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Senha:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Geometr212 BkCn BT", 0, 18), new java.awt.Color(255, 255, 255))); // NOI18N
+        campoSenha.setBorder(null);
         campoSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campoSenhaActionPerformed(evt);
@@ -81,7 +88,7 @@ public class LoginEstoquista extends javax.swing.JFrame {
         botao1.setFont(new java.awt.Font("Geometr212 BkCn BT", 1, 18)); // NOI18N
         botao1.setForeground(new java.awt.Color(255, 255, 255));
         botao1.setText("Entrar");
-        botao1.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, java.awt.Color.white, java.awt.Color.white));
+        botao1.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.white, java.awt.Color.white));
         botao1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botao1ActionPerformed(evt);
@@ -158,10 +165,10 @@ public class LoginEstoquista extends javax.swing.JFrame {
                         .addGap(42, 42, 42)
                         .addComponent(usuarioCampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(34, 34, 34)
-                        .addComponent(campoSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(botao1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(38, Short.MAX_VALUE))
+                        .addComponent(campoSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(28, 28, 28)
+                .addComponent(botao1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(90, Short.MAX_VALUE))
         );
 
         pack();
@@ -177,14 +184,14 @@ public class LoginEstoquista extends javax.swing.JFrame {
 
     private void botao1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao1ActionPerformed
         try {
-            String pesquisa = "select * from cliente where cpf_cliente like '" + usuarioCampo.getText() + "' && senha = '" + campoSenha.getText() + "'";
+           String pesquisa = "select * from usuario where cpf like '" + usuarioCampo.getText() + "' && senha = " + campoSenha.getText() + "";
             conexao_cliente.executaSQL(pesquisa);
 
-            if (conexao_cliente.resultset.first()) {
-                PagDeCargos pagDeCargos = new PagDeCargos();
-                pagDeCargos.setVisible(true);
-                dispose();
-            }
+           if (conexao_cliente.resultset.first()) {
+               Clientes clientes = new Clientes();
+               clientes.setVisible(true);
+               dispose();
+           }
             else {
                 JOptionPane.showMessageDialog(null, "Usuário não cadastrado!", "Mensagemm do Programa", JOptionPane.INFORMATION_MESSAGE);
                 conexao_cliente.desconecta();
@@ -214,13 +221,13 @@ public class LoginEstoquista extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginEstoquista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginEstoquista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginEstoquista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginEstoquista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>

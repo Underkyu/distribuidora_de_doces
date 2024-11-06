@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 09-Out-2024 às 20:14
+-- Tempo de geração: 06-Nov-2024 às 19:18
 -- Versão do servidor: 10.4.22-MariaDB
 -- versão do PHP: 8.0.13
 
@@ -56,7 +56,7 @@ CREATE TABLE `cliente` (
   `telefone_cliente` varchar(15) NOT NULL,
   `endereco_cliente` varchar(150) NOT NULL,
   `data_nasc` date NOT NULL,
-  `status_cliente` varchar(50) NOT NULL,
+  `status_cliente` varchar(255) DEFAULT 'ativo',
   `senha` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -65,7 +65,7 @@ CREATE TABLE `cliente` (
 --
 
 INSERT INTO `cliente` (`id_cliente`, `cpf_cliente`, `nome_cliente`, `telefone_cliente`, `endereco_cliente`, `data_nasc`, `status_cliente`, `senha`) VALUES
-(1, '431.758.468-70', 'José da Silva', '(11)97633-5478', 'Rua Cabo C, n° 6', '2003-07-23', 'Ótimo', ''),
+(1, '431.758.468-70', 'José da Silva', '(11)97633-5478', 'Rua Cabo C, n° 6', '2003-07-23', 'Ótimo', '123'),
 (2, '512.890.123-88', 'Maria de Souza', '(11)98765-4321', 'Avenida Brasil, n° 45', '1995-10-12', 'Regular', ''),
 (3, '213.456.789-00', 'Carlos Pereira', '(21)99887-6543', 'Rua das Flores, n° 22', '1980-04-17', 'Excelente', ''),
 (4, '987.654.321-55', 'Ana Costa', '(31)98777-1234', 'Praça da Liberdade, n° 101', '1990-12-25', 'Bom', ''),
@@ -249,7 +249,7 @@ ALTER TABLE `categoria`
 -- AUTO_INCREMENT de tabela `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `id_cliente` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_cliente` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de tabela `fornecedor`

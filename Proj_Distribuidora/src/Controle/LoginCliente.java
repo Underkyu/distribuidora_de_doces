@@ -2,27 +2,32 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package duda_controle;
+package Controle;
 
 import Conexao.Conexao;
 import java.awt.Color;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import javax.swing.border.*;
+
 
 /**
  *
  * @author FATEC ZONA LESTE
  */
-import duda_controle.Inscrição;
-import duda_controle.PagDeCargos;
+import Controle.Inscrição;
+import Controle.PagDeCargos;
+import java.awt.Font;
 import java.awt.Toolkit;
-public class LoginAluno extends javax.swing.JFrame {
+import javax.swing.BorderFactory;
+import javax.swing.border.TitledBorder;
+public class LoginCliente extends javax.swing.JFrame {
     Conexao conexao_Cliente;
 
     /**
      * Creates new form LoginAluno
      */
-    public LoginAluno() {
+    public LoginCliente() {
         // Inicialização dos componentes do JFrame
         initComponents();
         
@@ -246,7 +251,6 @@ public class LoginAluno extends javax.swing.JFrame {
         setBackground(new java.awt.Color(255, 255, 255));
 
         campoCpf.setBackground(new java.awt.Color(43, 0, 87));
-        campoCpf.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CPF:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Geometr212 BkCn BT", 0, 18), new java.awt.Color(255, 255, 255))); // NOI18N
         campoCpf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campoCpfActionPerformed(evt);
@@ -255,7 +259,6 @@ public class LoginAluno extends javax.swing.JFrame {
 
         SenhaCampo.setBackground(new java.awt.Color(43, 0, 87));
         SenhaCampo.setFont(new java.awt.Font("Geometr212 BkCn BT", 0, 14)); // NOI18N
-        SenhaCampo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Senha:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Geometr212 BkCn BT", 0, 18), new java.awt.Color(255, 255, 255))); // NOI18N
         SenhaCampo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SenhaCampoActionPerformed(evt);
@@ -266,7 +269,7 @@ public class LoginAluno extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Geometr212 BkCn BT", 1, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Entrar");
-        jButton1.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, java.awt.Color.white, java.awt.Color.white));
+        jButton1.setBorder(javax.swing.BorderFactory.createEtchedBorder( java.awt.Color.white, java.awt.Color.white));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -330,8 +333,9 @@ public class LoginAluno extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel4))
             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                .addGap(227, 227, 227)
-                .addComponent(jButton2))
+                .addGap(226, 226, 226)
+                .addComponent(jButton2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -356,10 +360,10 @@ public class LoginAluno extends javax.swing.JFrame {
                         .addGap(34, 34, 34)
                         .addComponent(SenhaCampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addComponent(jButton2)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(43, 43, 43)
+                .addComponent(jButton2)
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         pack();
@@ -388,8 +392,8 @@ public class LoginAluno extends javax.swing.JFrame {
            conexao_Cliente.executaSQL(pesquisa);
            
            if (conexao_Cliente.resultset.first()) {
-               PagDeCargos pagDeCargos = new PagDeCargos();
-               pagDeCargos.setVisible(true);
+               CatalogoBalas catalogoBalas= new CatalogoBalas();
+               catalogoBalas.setVisible(true);
                dispose();
            }
            else {
@@ -423,21 +427,23 @@ public class LoginAluno extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LoginAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LoginAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LoginAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LoginAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LoginAluno().setVisible(true);
+                new LoginCliente().setVisible(true);
             }
         });
     }
