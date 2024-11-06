@@ -61,13 +61,13 @@ public class Pedidos extends javax.swing.JFrame {
         Titulo3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        Tabela_Produtos_Pedidos = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
-        Titulo1 = new javax.swing.JLabel();
         Clientes = new javax.swing.JButton();
         Produtos = new javax.swing.JToggleButton();
         Pedidos = new javax.swing.JToggleButton();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        Tabela_Produtos_Pedidos = new javax.swing.JTable();
+        Titulo2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -188,13 +188,33 @@ public class Pedidos extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel2.setBackground(new java.awt.Color(102, 0, 204));
+        jScrollPane3.setBorder(null);
 
-        Titulo1.setBackground(new java.awt.Color(255, 255, 255));
-        Titulo1.setFont(new java.awt.Font("Geometr212 BkCn BT", 1, 36)); // NOI18N
-        Titulo1.setForeground(new java.awt.Color(255, 255, 255));
-        Titulo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Titulo1.setText("Distribuidora de doces");
+        Tabela_Produtos_Pedidos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Tabela_Produtos_Pedidos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Tabela_Produtos_Pedidos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Id", "Id_pedido", "Id_produito", "Quantidade", "Preço_final"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, true, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        Tabela_Produtos_Pedidos.setRowHeight(50);
+        jScrollPane3.setViewportView(Tabela_Produtos_Pedidos);
+
+        jPanel2.setBackground(new java.awt.Color(102, 0, 204));
 
         Clientes.setBackground(new java.awt.Color(102, 0, 204));
         Clientes.setFont(new java.awt.Font("Geometr212 BkCn BT", 1, 18)); // NOI18N
@@ -226,65 +246,45 @@ public class Pedidos extends javax.swing.JFrame {
             }
         });
 
+        Titulo2.setBackground(new java.awt.Color(255, 255, 255));
+        Titulo2.setFont(new java.awt.Font("Geometr212 BkCn BT", 1, 36)); // NOI18N
+        Titulo2.setForeground(new java.awt.Color(255, 255, 255));
+        Titulo2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Titulo2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Controle/Imagens/icone.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(Titulo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(jPanel2Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Titulo2)
+                .addGap(18, 18, 18)
                 .addComponent(Clientes)
-                .addGap(103, 103, 103)
+                .addGap(18, 18, 18)
                 .addComponent(Produtos)
-                .addGap(82, 82, 82)
+                .addGap(18, 18, 18)
                 .addComponent(Pedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(407, 407, 407))
+                .addGap(436, 436, 436))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addComponent(Titulo1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Pedidos)
-                    .addComponent(Produtos)
-                    .addComponent(Clientes))
-                .addContainerGap())
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Titulo2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Clientes)
+                            .addComponent(Produtos)
+                            .addComponent(Pedidos))))
+                .addGap(0, 11, Short.MAX_VALUE))
         );
-
-        jScrollPane3.setBorder(null);
-
-        Tabela_Produtos_Pedidos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        Tabela_Produtos_Pedidos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        Tabela_Produtos_Pedidos.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "Id", "Id_pedido", "Id_produito", "Quantidade", "Preço_final"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, true, true, true, true
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        Tabela_Produtos_Pedidos.setRowHeight(50);
-        jScrollPane3.setViewportView(Tabela_Produtos_Pedidos);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -303,6 +303,7 @@ public class Pedidos extends javax.swing.JFrame {
                     .addComponent(jScrollPane3)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(46, 46, 46))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -328,7 +329,7 @@ public class Pedidos extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(PesquisarProdutoVendido, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Lupa2))))
-                .addGap(347, 347, 347))
+                .addGap(20, 20, 20))
         );
 
         pack();
@@ -476,7 +477,7 @@ public class Pedidos extends javax.swing.JFrame {
     private javax.swing.JTable Tabela_Pedidos;
     private javax.swing.JTable Tabela_Produtos_Pedidos;
     private javax.swing.JLabel Titulo;
-    private javax.swing.JLabel Titulo1;
+    private javax.swing.JLabel Titulo2;
     private javax.swing.JLabel Titulo3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
