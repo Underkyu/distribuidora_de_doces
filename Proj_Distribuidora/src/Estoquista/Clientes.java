@@ -30,6 +30,12 @@ Conexao con_cliente;
         con_cliente.executaSQL("select * from cliente order by id_cliente");
         preenchaerTabela();
         getContentPane().setBackground(new Color(43,0,87));
+        Clientes.setBorderPainted(false);        // Remove a borda
+        Clientes.setContentAreaFilled(false);    // Remove o fundo
+        Produtos.setBorderPainted(false);        // Remove a borda
+        Produtos.setContentAreaFilled(false);    // Remove o fundo
+        Pedidos.setBorderPainted(false);        // Remove a borda
+        Pedidos.setContentAreaFilled(false);    // Remove o fundo
     }
 
     /**
@@ -94,10 +100,10 @@ Conexao con_cliente;
             }
         });
 
-        Lupa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Estoquista/lupa.png"))); // NOI18N
+        Lupa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Controle/Imagens/lupa.png"))); // NOI18N
 
         Bloquear.setBackground(new java.awt.Color(102, 0, 204));
-        Bloquear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Estoquista/Bloquear.png"))); // NOI18N
+        Bloquear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Controle/Imagens/Bloquear.png"))); // NOI18N
 
         jPanel1.setBackground(new java.awt.Color(102, 0, 204));
 
@@ -107,7 +113,7 @@ Conexao con_cliente;
         Titulo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Titulo1.setText("Clientes");
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Estoquista/user.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Controle/Imagens/user.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -181,7 +187,7 @@ Conexao con_cliente;
                 .addComponent(Pedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(77, 77, 77))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(Titulo, javax.swing.GroupLayout.DEFAULT_SIZE, 813, Short.MAX_VALUE)
+                .addComponent(Titulo, javax.swing.GroupLayout.DEFAULT_SIZE, 827, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -201,7 +207,7 @@ Conexao con_cliente;
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(95, Short.MAX_VALUE)
+                .addContainerGap(115, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(Lupa)

@@ -27,6 +27,14 @@ Conexao con_categoria;
         con_produtos.conecta();
          getContentPane().setBackground(new Color(43,0,87));
          setLocationRelativeTo(null);
+        Produtos.setBorderPainted(false);        // Remove a borda
+        Produtos.setContentAreaFilled(false);    // Remove o fundo
+        Fornecedor.setBorderPainted(false);        // Remove a borda
+        Fornecedor.setContentAreaFilled(false);    // Remove o fundo
+        Categoria.setBorderPainted(false);        // Remove a borda
+        Categoria.setContentAreaFilled(false);    // Remove o fundo
+        Voltar.setBorderPainted(false);        // Remove a borda
+        Voltar.setContentAreaFilled(false);    // Remove o fundo
     }
 
     /**
@@ -65,18 +73,18 @@ Conexao con_categoria;
         Titulo3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Titulo3.setText("Cadastrar Fornecedor");
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Estoquista/entregador.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Controle/Imagens/entregador.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(120, 120, 120)
+                .addGap(39, 39, 39)
                 .addComponent(Titulo3)
-                .addGap(32, 32, 32)
+                .addGap(29, 29, 29)
                 .addComponent(jLabel1)
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addContainerGap(94, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

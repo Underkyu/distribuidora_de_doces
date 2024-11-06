@@ -35,6 +35,12 @@ Conexao con_categoria;
         preenchaerTabela();
          getContentPane().setBackground(new Color(43,0,87));
          setLocationRelativeTo(null);
+        Clientes.setBorderPainted(false);        // Remove a borda
+        Clientes.setContentAreaFilled(false);    // Remove o fundo
+        Produtos.setBorderPainted(false);        // Remove a borda
+        Produtos.setContentAreaFilled(false);    // Remove o fundo
+        Pedidos.setBorderPainted(false);        // Remove a borda
+        Pedidos.setContentAreaFilled(false);    // Remove o fundo
     }
 
     /**
@@ -115,7 +121,7 @@ Conexao con_categoria;
             }
         });
 
-        Lupa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Estoquista/lupa.png"))); // NOI18N
+        Lupa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Controle/Imagens/lupa.png"))); // NOI18N
 
         jScrollPane3.setBorder(null);
 
@@ -154,7 +160,7 @@ Conexao con_categoria;
             }
         });
 
-        Lupa2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Estoquista/lupa.png"))); // NOI18N
+        Lupa2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Controle/Imagens/lupa.png"))); // NOI18N
 
         jScrollPane4.setBorder(null);
 
@@ -180,6 +186,7 @@ Conexao con_categoria;
             }
         });
         Tabela_Categoria.setRowHeight(50);
+        Tabela_Categoria.setVerifyInputWhenFocusTarget(false);
         jScrollPane4.setViewportView(Tabela_Categoria);
 
         PesquisarCategoria.addActionListener(new java.awt.event.ActionListener() {
@@ -193,7 +200,7 @@ Conexao con_categoria;
             }
         });
 
-        Lupa3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Estoquista/lupa.png"))); // NOI18N
+        Lupa3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Controle/Imagens/lupa.png"))); // NOI18N
 
         jPanel3.setBackground(new java.awt.Color(102, 0, 204));
 
@@ -203,7 +210,7 @@ Conexao con_categoria;
         Titulo3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Titulo3.setText("Produtos");
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Estoquista/doce.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Controle/Imagens/doce.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -218,7 +225,7 @@ Conexao con_categoria;
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Titulo3, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
+            .addComponent(Titulo3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
@@ -233,7 +240,7 @@ Conexao con_categoria;
         Titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Titulo.setText("Fornecedor");
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Estoquista/entregador.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Controle/Imagens/entregador.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -244,7 +251,7 @@ Conexao con_categoria;
                 .addComponent(Titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addContainerGap(99, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -263,14 +270,14 @@ Conexao con_categoria;
         Titulo14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Titulo14.setText("Categorias");
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Estoquista/linhas-de-opcoes.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Controle/Imagens/linhas-de-opcoes.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
         jPanel13Layout.setHorizontalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel13Layout.createSequentialGroup()
-                .addContainerGap(55, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Titulo14, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
@@ -288,7 +295,7 @@ Conexao con_categoria;
 
         AdicionarFornecedor.setBackground(new java.awt.Color(102, 0, 204));
         AdicionarFornecedor.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
-        AdicionarFornecedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Estoquista/mais (1).png"))); // NOI18N
+        AdicionarFornecedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Controle/Imagens/mais (1).png"))); // NOI18N
         AdicionarFornecedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AdicionarFornecedorActionPerformed(evt);
@@ -297,7 +304,7 @@ Conexao con_categoria;
 
         Adicionarcategoria.setBackground(new java.awt.Color(102, 0, 204));
         Adicionarcategoria.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
-        Adicionarcategoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Estoquista/mais (1).png"))); // NOI18N
+        Adicionarcategoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Controle/Imagens/mais (1).png"))); // NOI18N
         Adicionarcategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AdicionarcategoriaActionPerformed(evt);
@@ -306,7 +313,7 @@ Conexao con_categoria;
 
         adicionarProduto.setBackground(new java.awt.Color(102, 0, 204));
         adicionarProduto.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
-        adicionarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Estoquista/mais (1).png"))); // NOI18N
+        adicionarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Controle/Imagens/mais (1).png"))); // NOI18N
         adicionarProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 adicionarProdutoActionPerformed(evt);
@@ -467,10 +474,6 @@ Conexao con_categoria;
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void PesquisarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PesquisarProdutoActionPerformed
-
-    }//GEN-LAST:event_PesquisarProdutoActionPerformed
-
     private void PesquisarFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PesquisarFornecedorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_PesquisarFornecedorActionPerformed
@@ -491,12 +494,6 @@ Conexao con_categoria;
         setVisible(false);
     }//GEN-LAST:event_AdicionarcategoriaActionPerformed
 
-    private void adicionarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarProdutoActionPerformed
-        AdicionarProduto tela = new AdicionarProduto();
-        tela.setVisible(true);
-        setVisible(false);
-    }//GEN-LAST:event_adicionarProdutoActionPerformed
-
     private void ClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClientesActionPerformed
         Clientes tela = new Clientes();
         tela.setVisible(true);
@@ -514,21 +511,6 @@ Conexao con_categoria;
         tela.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_PedidosActionPerformed
-
-    private void PesquisarProdutoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PesquisarProdutoKeyReleased
-        try{
-            String pesquisa = "select * from produto where nome_produto like '"+ PesquisarProduto.getText()+"%'" ;
-            con_produtos.executaSQL(pesquisa);
-            
-            if(con_produtos.resultset.first()){
-                preenchaerTabela();
-            }else{
-                JOptionPane.showMessageDialog(null, "Não existem dados com esse parametro");
-            }
-        }catch(SQLException error){
-                JOptionPane.showMessageDialog(null,"Dados não localizados");
-        }
-    }//GEN-LAST:event_PesquisarProdutoKeyReleased
 
     private void PesquisarFornecedorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PesquisarFornecedorKeyReleased
         try{
@@ -559,6 +541,31 @@ Conexao con_categoria;
                 JOptionPane.showMessageDialog(null,"Dados não localizados");
         }
     }//GEN-LAST:event_PesquisarCategoriaKeyReleased
+
+    private void PesquisarProdutoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PesquisarProdutoKeyReleased
+        try{
+            String pesquisa = "select * from produto where nome_produto like '"+ PesquisarProduto.getText()+"%'" ;
+            con_produtos.executaSQL(pesquisa);
+
+            if(con_produtos.resultset.first()){
+                preenchaerTabela();
+            }else{
+                JOptionPane.showMessageDialog(null, "Não existem dados com esse parametro");
+            }
+        }catch(SQLException error){
+            JOptionPane.showMessageDialog(null,"Dados não localizados");
+        }
+    }//GEN-LAST:event_PesquisarProdutoKeyReleased
+
+    private void PesquisarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PesquisarProdutoActionPerformed
+
+    }//GEN-LAST:event_PesquisarProdutoActionPerformed
+
+    private void adicionarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarProdutoActionPerformed
+        AdicionarProduto tela = new AdicionarProduto();
+        tela.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_adicionarProdutoActionPerformed
 
     /**
      * @param args the command line arguments

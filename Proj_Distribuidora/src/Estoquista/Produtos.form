@@ -176,7 +176,7 @@
     <Component class="javax.swing.JLabel" name="Lupa">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Estoquista/lupa.png"/>
+          <Image iconType="3" name="/Controle/Imagens/lupa.png"/>
         </Property>
       </Properties>
     </Component>
@@ -224,7 +224,7 @@
     <Component class="javax.swing.JLabel" name="Lupa2">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Estoquista/lupa.png"/>
+          <Image iconType="3" name="/Controle/Imagens/lupa.png"/>
         </Property>
       </Properties>
     </Component>
@@ -257,6 +257,7 @@
               </Table>
             </Property>
             <Property name="rowHeight" type="int" value="50"/>
+            <Property name="verifyInputWhenFocusTarget" type="boolean" value="false"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -270,7 +271,7 @@
     <Component class="javax.swing.JLabel" name="Lupa3">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Estoquista/lupa.png"/>
+          <Image iconType="3" name="/Controle/Imagens/lupa.png"/>
         </Property>
       </Properties>
     </Component>
@@ -295,7 +296,7 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="Titulo3" pref="77" max="32767" attributes="0"/>
+              <Component id="Titulo3" max="32767" attributes="0"/>
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
@@ -323,7 +324,7 @@
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Estoquista/doce.png"/>
+              <Image iconType="3" name="/Controle/Imagens/doce.png"/>
             </Property>
           </Properties>
         </Component>
@@ -344,7 +345,7 @@
                   <Component id="Titulo" min="-2" pref="285" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="56" max="32767" attributes="0"/>
+                  <EmptySpace pref="99" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -378,7 +379,7 @@
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Estoquista/entregador.png"/>
+              <Image iconType="3" name="/Controle/Imagens/entregador.png"/>
             </Property>
           </Properties>
         </Component>
@@ -395,7 +396,7 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace pref="55" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Component id="Titulo14" min="-2" pref="224" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
@@ -435,7 +436,7 @@
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Estoquista/linhas-de-opcoes.png"/>
+              <Image iconType="3" name="/Controle/Imagens/linhas-de-opcoes.png"/>
             </Property>
           </Properties>
         </Component>
@@ -450,7 +451,7 @@
           <Font name="Segoe UI" size="48" style="1"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Estoquista/mais (1).png"/>
+          <Image iconType="3" name="/Controle/Imagens/mais (1).png"/>
         </Property>
       </Properties>
       <Events>
@@ -466,7 +467,7 @@
           <Font name="Segoe UI" size="48" style="1"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Estoquista/mais (1).png"/>
+          <Image iconType="3" name="/Controle/Imagens/mais (1).png"/>
         </Property>
       </Properties>
       <Events>
@@ -482,7 +483,7 @@
           <Font name="Segoe UI" size="48" style="1"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Estoquista/mais (1).png"/>
+          <Image iconType="3" name="/Controle/Imagens/mais (1).png"/>
         </Property>
       </Properties>
       <Events>

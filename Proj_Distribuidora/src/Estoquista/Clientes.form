@@ -24,7 +24,7 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace pref="95" max="32767" attributes="0"/>
+              <EmptySpace pref="115" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="Lupa" min="-2" max="-2" attributes="0"/>
@@ -115,7 +115,7 @@
     <Component class="javax.swing.JLabel" name="Lupa">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Estoquista/lupa.png"/>
+          <Image iconType="3" name="/Controle/Imagens/lupa.png"/>
         </Property>
       </Properties>
     </Component>
@@ -125,7 +125,7 @@
           <Color blue="cc" green="0" red="66" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Estoquista/Bloquear.png"/>
+          <Image iconType="3" name="/Controle/Imagens/Bloquear.png"/>
         </Property>
       </Properties>
     </Component>
@@ -180,7 +180,7 @@
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Estoquista/user.png"/>
+              <Image iconType="3" name="/Controle/Imagens/user.png"/>
             </Property>
           </Properties>
         </Component>
@@ -206,7 +206,7 @@
                   <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
               </Group>
               <Group type="102" attributes="0">
-                  <Component id="Titulo" pref="813" max="32767" attributes="0"/>
+                  <Component id="Titulo" pref="827" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
