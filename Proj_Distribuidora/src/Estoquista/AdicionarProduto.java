@@ -9,6 +9,8 @@ import Conexao.Conexao;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.sql.*;
+import java.util.concurrent.locks.StampedLock;
+import java.sql.Statement;
 
 /**
  *
@@ -23,6 +25,7 @@ Conexao con_produtos;
         initComponents();
         con_produtos = new Conexao();
         con_produtos.conecta();
+        con_produtos.executaSQL("select * from produto order by id_produto");
          getContentPane().setBackground(new Color(43,0,87));
          setLocationRelativeTo(null);
         Produtos.setBorderPainted(false);        // Remove a borda
@@ -339,8 +342,8 @@ Conexao con_produtos;
         int quantEstoque = Integer.parseInt(quantEstoqueProduto.getText());
         
         try{
-            String insert_sql="insert into `produto` (`id_fornecedor`,`id_categoria`,`nome_produto`,`valor_unitario`,`quantidade_estoque`,`quantidade_minima`) "
-                    + "values ("+idFornecedor+","+idCategoria+",'"+nome+"',"+valor+","+quantEstoque+","+quantMinima+")";
+            String insert_sql="insert into produto (id_fornecedor,id_categoria,nome_produto,valor_unitario,quantidade_estoque,quantidade_minima) "
+                    + "values ('"+idFornecedor+"','"+idCategoria+"','"+nome+"','"+valor+"','"+quantEstoque+"','"+quantMinima+"')";
             System.out.println(insert_sql);
             con_produtos.statement.executeUpdate(insert_sql);
             JOptionPane.showMessageDialog(null, "Cadastrado com sucesso");
