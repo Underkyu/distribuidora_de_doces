@@ -394,9 +394,9 @@ try {
         System.out.println("Usuário encontrado na tabela de 'usuario': " + cpf);
 
         // Abre a tela de Produtos
-    Login login = new Login();
-        login.setVisible(true);
-        dispose(); // Fecha a tela de login
+     Produtos produtos = new Produtos();
+        produtos.setVisible(true);
+        dispose(); 
     } 
     
     else {
