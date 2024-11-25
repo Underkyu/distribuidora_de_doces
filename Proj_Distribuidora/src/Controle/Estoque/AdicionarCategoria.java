@@ -26,6 +26,8 @@ Conexao con_categoria;
         con_categoria.executaSQL("select * from categoria order by id_categoria");
          getContentPane().setBackground(new Color(43,0,87));
          setLocationRelativeTo(null);
+         preenchaerTabela();
+         Codigo.setVisible(false);
         Produtos.setBorderPainted(false);        // Remove a borda
         Produtos.setContentAreaFilled(false);    // Remove o fundo
         Fornecedor.setBorderPainted(false);        // Remove a borda
@@ -58,6 +60,12 @@ Conexao con_categoria;
         Categoria = new javax.swing.JToggleButton();
         Titulo = new javax.swing.JLabel();
         Voltar = new javax.swing.JButton();
+        Codigo = new javax.swing.JTextField();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        Tabela_Categoria = new javax.swing.JTable();
+        PesquisarCategoria = new javax.swing.JTextField();
+        Lupa3 = new javax.swing.JLabel();
+        Limpar = new javax.swing.JButton();
 
         jFormattedTextField1.setText("jFormattedTextField1");
 
@@ -169,7 +177,7 @@ Conexao con_categoria;
                 .addComponent(Categoria)
                 .addGap(18, 18, 18)
                 .addComponent(Voltar)
-                .addContainerGap(88, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,28 +194,94 @@ Conexao con_categoria;
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jScrollPane4.setBorder(null);
+
+        Tabela_Categoria.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Tabela_Categoria.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Tabela_Categoria.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Id", "Nome"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        Tabela_Categoria.setRowHeight(50);
+        Tabela_Categoria.setVerifyInputWhenFocusTarget(false);
+        Tabela_Categoria.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Tabela_CategoriaMouseClicked(evt);
+            }
+        });
+        jScrollPane4.setViewportView(Tabela_Categoria);
+
+        PesquisarCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PesquisarCategoriaActionPerformed(evt);
+            }
+        });
+        PesquisarCategoria.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                PesquisarCategoriaKeyReleased(evt);
+            }
+        });
+
+        Lupa3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Controle/Imagens/lupa.png"))); // NOI18N
+
+        Limpar.setBackground(new java.awt.Color(102, 0, 204));
+        Limpar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        Limpar.setForeground(new java.awt.Color(255, 255, 255));
+        Limpar.setText("Limpar");
+        Limpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LimparActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(105, 105, 105))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(24, 24, 24)
-                                .addComponent(Cadastrar))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(nomeCategoria)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(Codigo, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                        .addGap(95, 95, 95)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(nomeCategoria)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(285, 285, 285))))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(Lupa3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(PesquisarCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 605, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(67, 67, 67))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(252, 252, 252)
+                .addComponent(Cadastrar)
+                .addGap(18, 18, 18)
+                .addComponent(Limpar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -218,10 +292,20 @@ Conexao con_categoria;
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(nomeCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nomeCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(39, 39, 39)
-                .addComponent(Cadastrar)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Cadastrar)
+                    .addComponent(Limpar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(PesquisarCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Lupa3))
+                .addGap(82, 82, 82))
         );
 
         pack();
@@ -232,16 +316,26 @@ Conexao con_categoria;
 
         
         try{
+            if(Codigo.getText().equals("")){
             String insert_sql="insert into categoria (nome_categoria) "
                     + "values ('"+nome+"')";
             System.out.println(insert_sql);
             con_categoria.statement.executeUpdate(insert_sql);
             JOptionPane.showMessageDialog(null, "Cadastrado com sucesso");
-            Produtos tela = new Produtos();
+            AdicionarCategoria tela =  new AdicionarCategoria();
             tela.setVisible(true);
             setVisible(false);
+            }else{
+                String insert_sql= "update categoria set nome_categoria='"+nome+"' where id_categoria = "+Codigo.getText();
+                System.out.println(insert_sql);
+                con_categoria.statement.executeUpdate(insert_sql);
+                JOptionPane.showMessageDialog(null, "Atualizado com sucesso");;
+                AdicionarCategoria tela =  new AdicionarCategoria();
+                tela.setVisible(true);
+                setVisible(false);
+            }
         }catch(Exception erro){
-            JOptionPane.showMessageDialog(null, "Erro ao cadastrar");
+          JOptionPane.showMessageDialog(null, "Erro ao cadastrar");
             System.out.println(erro);
         }
     }//GEN-LAST:event_CadastrarActionPerformed
@@ -269,6 +363,37 @@ Conexao con_categoria;
         tela.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_VoltarActionPerformed
+
+    private void PesquisarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PesquisarCategoriaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PesquisarCategoriaActionPerformed
+
+    private void PesquisarCategoriaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PesquisarCategoriaKeyReleased
+        try{
+            String pesquisa = "select * from categoria where nome_categoria like '"+ PesquisarCategoria.getText()+"%'" ;
+            con_categoria.executaSQL(pesquisa);
+
+            if(con_categoria.resultset.first()){
+                preenchaerTabela();
+            }else{
+                JOptionPane.showMessageDialog(null, "Não existem dados com esse parametro");
+            }
+        }catch(SQLException error){
+            JOptionPane.showMessageDialog(null,"Dados não localizados");
+        }
+    }//GEN-LAST:event_PesquisarCategoriaKeyReleased
+
+    private void Tabela_CategoriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tabela_CategoriaMouseClicked
+        int linha_selecionada = Tabela_Categoria.getSelectedRow();
+        
+        nomeCategoria.setText(Tabela_Categoria.getValueAt(linha_selecionada, 1).toString());
+        Codigo.setText(Tabela_Categoria.getValueAt(linha_selecionada, 0).toString());
+    }//GEN-LAST:event_Tabela_CategoriaMouseClicked
+
+    private void LimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LimparActionPerformed
+        nomeCategoria.setText("");
+        Codigo.setText("");
+    }//GEN-LAST:event_LimparActionPerformed
 
     /**
      * @param args the command line arguments
@@ -335,13 +460,39 @@ Conexao con_categoria;
             }
         });
     }
+         public void preenchaerTabela(){
+        /*Tabela_Pedidos.getColumnModel().getColumn(1).setPreferredWidth(150);
+        Tabela_Pedidos.getColumnModel().getColumn(2).setPreferredWidth(150);
+        Tabela_Pedidos.getColumnModel().getColumn(3).setPreferredWidth(150);
+        Tabela_Pedidos.getColumnModel().getColumn(4).setPreferredWidth(200);
+        Tabela_Pedidos.getColumnModel().getColumn(5).setPreferredWidth(150);
+        Tabela_Pedidos.getColumnModel().getColumn(6).setPreferredWidth(125);*/
+        DefaultTableModel modelo3 = (DefaultTableModel) Tabela_Categoria.getModel();
+        modelo3.setNumRows(0);
+        
+        try {
+            con_categoria.resultset.beforeFirst();
+            while(con_categoria.resultset.next()){
+                modelo3.addRow(new Object[]{
+                    con_categoria.resultset.getString("id_categoria"),con_categoria.resultset.getString("nome_categoria")
+                });
+            }
+        }catch(SQLException erro){
+            JOptionPane.showMessageDialog(null, "Erro ao listar a tabela");
+        }
+    }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Cadastrar;
     private javax.swing.JToggleButton Categoria;
+    private javax.swing.JTextField Codigo;
     private javax.swing.JButton Fornecedor;
+    private javax.swing.JButton Limpar;
+    private javax.swing.JLabel Lupa3;
+    private javax.swing.JTextField PesquisarCategoria;
     private javax.swing.JToggleButton Produtos;
+    private javax.swing.JTable Tabela_Categoria;
     private javax.swing.JLabel Titulo;
     private javax.swing.JLabel Titulo3;
     private javax.swing.JButton Voltar;
@@ -350,6 +501,7 @@ Conexao con_categoria;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextField nomeCategoria;
     // End of variables declaration//GEN-END:variables
 }

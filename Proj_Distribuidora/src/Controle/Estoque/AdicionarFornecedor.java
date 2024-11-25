@@ -27,6 +27,8 @@ Conexao con_fornecedor;
         con_fornecedor.executaSQL("select * from fornecedor order by id_fornecedor");
          getContentPane().setBackground(new Color(43,0,87));
          setLocationRelativeTo(null);
+         Codigo.setVisible(false);
+         preenchaerTabela();
         Produtos.setBorderPainted(false);        // Remove a borda
         Produtos.setContentAreaFilled(false);    // Remove o fundo
         Fornecedor.setBorderPainted(false);        // Remove a borda
@@ -62,6 +64,12 @@ Conexao con_fornecedor;
         Categoria = new javax.swing.JToggleButton();
         Titulo = new javax.swing.JLabel();
         Voltar = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        Tabela_Forncedor = new javax.swing.JTable();
+        PesquisarFornecedor = new javax.swing.JTextField();
+        Lupa2 = new javax.swing.JLabel();
+        Limpar = new javax.swing.JButton();
+        Codigo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -203,33 +211,111 @@ Conexao con_fornecedor;
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jScrollPane3.setBorder(null);
+
+        Tabela_Forncedor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Tabela_Forncedor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Tabela_Forncedor.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Id", "Nome", "Endereço", "Telefone"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        Tabela_Forncedor.setRowHeight(50);
+        Tabela_Forncedor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Tabela_ForncedorMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(Tabela_Forncedor);
+
+        PesquisarFornecedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PesquisarFornecedorActionPerformed(evt);
+            }
+        });
+        PesquisarFornecedor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                PesquisarFornecedorKeyReleased(evt);
+            }
+        });
+
+        Lupa2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Controle/Imagens/lupa.png"))); // NOI18N
+
+        Limpar.setBackground(new java.awt.Color(102, 0, 204));
+        Limpar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        Limpar.setForeground(new java.awt.Color(255, 255, 255));
+        Limpar.setText("Limpar");
+        Limpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LimparActionPerformed(evt);
+            }
+        });
+
+        Codigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CodigoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(37, 37, 37)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(nomeForncedor)
+                                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(79, 79, 79)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(telefoneFornecedor)
+                                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(65, 65, 65)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(enderecoFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(242, 242, 242)
+                                .addComponent(Cadastrar)
+                                .addGap(28, 28, 28)
+                                .addComponent(Limpar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
+                .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(281, 281, 281)
-                        .addComponent(Cadastrar))
+                        .addComponent(Lupa2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(PesquisarFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(85, 85, 85))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(nomeForncedor)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(79, 79, 79)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(telefoneFornecedor)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(65, 65, 65)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(enderecoFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 708, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -251,9 +337,18 @@ Conexao con_fornecedor;
                                 .addComponent(enderecoFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(telefoneFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jLabel6))
-                .addGap(76, 76, 76)
-                .addComponent(Cadastrar)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addGap(57, 57, 57)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Cadastrar)
+                    .addComponent(Limpar))
+                .addGap(50, 50, 50)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Lupa2)
+                    .addComponent(Codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PesquisarFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(13, 13, 13))
         );
 
         pack();
@@ -294,19 +389,68 @@ Conexao con_fornecedor;
 
         
         try{
+            if(Codigo.getText().equals("")){
             String insert_sql="insert into fornecedor (nome_fornecedor,telefone_fornecedor,endereco_fornecedor) "
                     + "values ('"+nome+"','"+telefone+"','"+endereco+"')";
             System.out.println(insert_sql);
             con_fornecedor.statement.executeUpdate(insert_sql);
             JOptionPane.showMessageDialog(null, "Cadastrado com sucesso");
-            Produtos tela = new Produtos();
+            AdicionarFornecedor tela =  new AdicionarFornecedor();
             tela.setVisible(true);
             setVisible(false);
+            }else{
+                String insert_sql="update fornecedor set nome_fornecedor='"+nome+"',telefone_fornecedor='"+telefone+"',endereco_fornecedor='"+endereco+"' where id_fornecedor = "+Codigo.getText();
+                System.out.println(insert_sql);
+                con_fornecedor.statement.executeUpdate(insert_sql);
+                JOptionPane.showMessageDialog(null, "Atualizado com sucesso");;
+                AdicionarFornecedor tela =  new AdicionarFornecedor();
+                tela.setVisible(true);
+                setVisible(false);
+            }
         }catch(Exception erro){
             JOptionPane.showMessageDialog(null, "Erro ao cadastrar");
             System.out.println(erro);
         }
     }//GEN-LAST:event_CadastrarActionPerformed
+
+    private void PesquisarFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PesquisarFornecedorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PesquisarFornecedorActionPerformed
+
+    private void PesquisarFornecedorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PesquisarFornecedorKeyReleased
+        try{
+            String pesquisa = "select * from fornecedor where nome_fornecedor like '"+ PesquisarFornecedor.getText()+"%'" ;
+            con_fornecedor.executaSQL(pesquisa);
+
+            if(con_fornecedor.resultset.first()){
+                preenchaerTabela();
+            }else{
+                JOptionPane.showMessageDialog(null, "Não existem dados com esse parametro");
+            }
+        }catch(SQLException error){
+            JOptionPane.showMessageDialog(null,"Dados não localizados");
+        }
+    }//GEN-LAST:event_PesquisarFornecedorKeyReleased
+
+    private void LimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LimparActionPerformed
+        nomeForncedor.setText("");
+        telefoneFornecedor.setText("");
+        Codigo.setText("");
+        enderecoFornecedor.setText("");
+    }//GEN-LAST:event_LimparActionPerformed
+
+    private void CodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CodigoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CodigoActionPerformed
+
+    private void Tabela_ForncedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tabela_ForncedorMouseClicked
+        int linha_selecionada = Tabela_Forncedor.getSelectedRow();
+        
+        nomeForncedor.setText(Tabela_Forncedor.getValueAt(linha_selecionada, 1).toString());
+        enderecoFornecedor.setText(Tabela_Forncedor.getValueAt(linha_selecionada, 2).toString());
+        telefoneFornecedor.setText(Tabela_Forncedor.getValueAt(linha_selecionada, 3).toString());
+        Codigo.setText(Tabela_Forncedor.getValueAt(linha_selecionada, 0).toString());
+    }//GEN-LAST:event_Tabela_ForncedorMouseClicked
 
     /**
      * @param args the command line arguments
@@ -358,12 +502,40 @@ Conexao con_fornecedor;
         });
     }
     
+         public void preenchaerTabela(){
+        /*Tabela_Pedidos.getColumnModel().getColumn(1).setPreferredWidth(150);
+        Tabela_Pedidos.getColumnModel().getColumn(2).setPreferredWidth(150);
+        Tabela_Pedidos.getColumnModel().getColumn(3).setPreferredWidth(150);
+        Tabela_Pedidos.getColumnModel().getColumn(4).setPreferredWidth(200);
+        Tabela_Pedidos.getColumnModel().getColumn(5).setPreferredWidth(150);
+        Tabela_Pedidos.getColumnModel().getColumn(6).setPreferredWidth(125);*/
+        
+        DefaultTableModel modelo2 = (DefaultTableModel) Tabela_Forncedor.getModel();
+        modelo2.setNumRows(0);
+        
+        try {
+            con_fornecedor.resultset.beforeFirst();
+            while(con_fornecedor.resultset.next()){
+                modelo2.addRow(new Object[]{
+                    con_fornecedor.resultset.getString("id_fornecedor"),con_fornecedor.resultset.getString("nome_fornecedor"),con_fornecedor.resultset.getString("endereco_fornecedor"), con_fornecedor.resultset.getString("telefone_fornecedor")
+                });
+            }
+        }catch(SQLException erro){
+            JOptionPane.showMessageDialog(null, "Erro ao listar a tabela");
+        }
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Cadastrar;
     private javax.swing.JToggleButton Categoria;
+    private javax.swing.JTextField Codigo;
     private javax.swing.JButton Fornecedor;
+    private javax.swing.JButton Limpar;
+    private javax.swing.JLabel Lupa2;
+    private javax.swing.JTextField PesquisarFornecedor;
     private javax.swing.JToggleButton Produtos;
+    private javax.swing.JTable Tabela_Forncedor;
     private javax.swing.JLabel Titulo;
     private javax.swing.JLabel Titulo3;
     private javax.swing.JButton Voltar;
@@ -374,6 +546,7 @@ Conexao con_fornecedor;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextField nomeForncedor;
     private javax.swing.JTextField telefoneFornecedor;
     // End of variables declaration//GEN-END:variables
