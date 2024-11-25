@@ -135,7 +135,7 @@ Conexao con_categoria;
                 {null, null, null, null}
             },
             new String [] {
-                "Id", "Nome", "Telefone", "Endereço"
+                "Id", "Nome", "Endereço", "Telefone"
             }
         ) {
             boolean[] canEdit = new boolean [] {

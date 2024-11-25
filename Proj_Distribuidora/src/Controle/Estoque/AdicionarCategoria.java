@@ -15,16 +15,15 @@ import java.sql.*;
  * @author FATEC ZONA LESTE
  */
 public class AdicionarCategoria extends javax.swing.JFrame {
-Conexao con_produtos;
-Conexao con_fornecedor;
 Conexao con_categoria;
     /**
      * Creates new form Clientes
      */
     public AdicionarCategoria() {
         initComponents();
-        con_produtos = new Conexao();
-        con_produtos.conecta();
+        con_categoria = new Conexao();
+        con_categoria.conecta();
+        con_categoria.executaSQL("select * from categoria order by id_categoria");
          getContentPane().setBackground(new Color(43,0,87));
          setLocationRelativeTo(null);
         Produtos.setBorderPainted(false);        // Remove a borda
@@ -50,9 +49,9 @@ Conexao con_categoria;
         jPanel3 = new javax.swing.JPanel();
         Titulo3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        nomeForncedor = new javax.swing.JTextField();
+        nomeCategoria = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        Cadastrar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         Fornecedor = new javax.swing.JButton();
         Produtos = new javax.swing.JToggleButton();
@@ -97,13 +96,13 @@ Conexao con_categoria;
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Nome");
 
-        jButton1.setBackground(new java.awt.Color(102, 0, 204));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Cadastrar\n");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Cadastrar.setBackground(new java.awt.Color(102, 0, 204));
+        Cadastrar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        Cadastrar.setForeground(new java.awt.Color(255, 255, 255));
+        Cadastrar.setText("Cadastrar\n");
+        Cadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                CadastrarActionPerformed(evt);
             }
         });
 
@@ -204,9 +203,9 @@ Conexao con_categoria;
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(24, 24, 24)
-                                .addComponent(jButton1))
+                                .addComponent(Cadastrar))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(nomeForncedor)
+                                .addComponent(nomeCategoria)
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(285, 285, 285))))
         );
@@ -219,18 +218,33 @@ Conexao con_categoria;
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(nomeForncedor, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(nomeCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39)
-                .addComponent(jButton1)
+                .addComponent(Cadastrar)
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void CadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastrarActionPerformed
+        String nome = nomeCategoria.getText();
+
+        
+        try{
+            String insert_sql="insert into categoria (nome_categoria) "
+                    + "values ('"+nome+"')";
+            System.out.println(insert_sql);
+            con_categoria.statement.executeUpdate(insert_sql);
+            JOptionPane.showMessageDialog(null, "Cadastrado com sucesso");
+            Produtos tela = new Produtos();
+            tela.setVisible(true);
+            setVisible(false);
+        }catch(Exception erro){
+            JOptionPane.showMessageDialog(null, "Erro ao cadastrar");
+            System.out.println(erro);
+        }
+    }//GEN-LAST:event_CadastrarActionPerformed
 
     private void FornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FornecedorActionPerformed
         AdicionarFornecedor tela = new AdicionarFornecedor();
@@ -324,18 +338,18 @@ Conexao con_categoria;
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Cadastrar;
     private javax.swing.JToggleButton Categoria;
     private javax.swing.JButton Fornecedor;
     private javax.swing.JToggleButton Produtos;
     private javax.swing.JLabel Titulo;
     private javax.swing.JLabel Titulo3;
     private javax.swing.JButton Voltar;
-    private javax.swing.JButton jButton1;
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField nomeForncedor;
+    private javax.swing.JTextField nomeCategoria;
     // End of variables declaration//GEN-END:variables
 }

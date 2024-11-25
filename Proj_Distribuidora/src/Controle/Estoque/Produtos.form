@@ -206,8 +206,8 @@
               <Table columnCount="4" rowCount="4">
                 <Column editable="false" title="Id" type="java.lang.Object"/>
                 <Column editable="true" title="Nome" type="java.lang.Object"/>
-                <Column editable="true" title="Telefone" type="java.lang.Object"/>
                 <Column editable="true" title="Endere&#xe7;o" type="java.lang.Object"/>
+                <Column editable="true" title="Telefone" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="rowHeight" type="int" value="50"/>

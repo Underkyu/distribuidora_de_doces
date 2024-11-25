@@ -62,7 +62,7 @@ Conexao con_produtos;
         quantEstoqueProduto = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         quantMinimaProduto = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        Cadastrar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         Fornecedor = new javax.swing.JButton();
         Produtos = new javax.swing.JToggleButton();
@@ -147,13 +147,13 @@ Conexao con_produtos;
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(102, 0, 204));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Cadastrar ");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Cadastrar.setBackground(new java.awt.Color(102, 0, 204));
+        Cadastrar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        Cadastrar.setForeground(new java.awt.Color(255, 255, 255));
+        Cadastrar.setText("Cadastrar ");
+        Cadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                CadastrarActionPerformed(evt);
             }
         });
 
@@ -276,7 +276,7 @@ Conexao con_produtos;
                                         .addComponent(idFornecedorProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGroup(layout.createSequentialGroup()
                             .addGap(280, 280, 280)
-                            .addComponent(jButton1))))
+                            .addComponent(Cadastrar))))
                 .addGap(34, 34, 34))
         );
         layout.setVerticalGroup(
@@ -314,7 +314,7 @@ Conexao con_produtos;
                                 .addComponent(quantEstoqueProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jLabel7))
                 .addGap(39, 39, 39)
-                .addComponent(jButton1)
+                .addComponent(Cadastrar)
                 .addContainerGap(86, Short.MAX_VALUE))
         );
 
@@ -333,7 +333,7 @@ Conexao con_produtos;
         // TODO add your handling code here:
     }//GEN-LAST:event_idCategoriaProdutoActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void CadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastrarActionPerformed
         String nome = nomeProduto.getText();
         double valor =  Double.parseDouble(valorProduto.getText());
         int idFornecedor = Integer.parseInt(idFornecedorProduto.getText());
@@ -354,7 +354,7 @@ Conexao con_produtos;
             JOptionPane.showMessageDialog(null, "Erro ao cadastrar");
             System.out.println(erro);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_CadastrarActionPerformed
 
     private void FornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FornecedorActionPerformed
         AdicionarFornecedor tela = new AdicionarFornecedor();
@@ -424,6 +424,7 @@ Conexao con_produtos;
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Cadastrar;
     private javax.swing.JToggleButton Categoria;
     private javax.swing.JButton Fornecedor;
     private javax.swing.JToggleButton Produtos;
@@ -432,7 +433,6 @@ Conexao con_produtos;
     private javax.swing.JButton Voltar;
     private javax.swing.JTextField idCategoriaProduto;
     private javax.swing.JTextField idFornecedorProduto;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

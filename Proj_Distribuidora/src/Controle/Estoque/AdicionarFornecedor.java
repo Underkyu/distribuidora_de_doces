@@ -15,16 +15,16 @@ import java.sql.*;
  * @author FATEC ZONA LESTE
  */
 public class AdicionarFornecedor extends javax.swing.JFrame {
-Conexao con_produtos;
 Conexao con_fornecedor;
-Conexao con_categoria;
+
     /**
      * Creates new form Clientes
      */
     public AdicionarFornecedor() {
         initComponents();
-        con_produtos = new Conexao();
-        con_produtos.conecta();
+        con_fornecedor = new Conexao();
+        con_fornecedor.conecta();
+        con_fornecedor.executaSQL("select * from fornecedor order by id_fornecedor");
          getContentPane().setBackground(new Color(43,0,87));
          setLocationRelativeTo(null);
         Produtos.setBorderPainted(false);        // Remove a borda
@@ -53,9 +53,9 @@ Conexao con_categoria;
         jLabel4 = new javax.swing.JLabel();
         telefoneFornecedor = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        enderecoFornecedor = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        Cadastrar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         Fornecedor = new javax.swing.JButton();
         Produtos = new javax.swing.JToggleButton();
@@ -102,9 +102,9 @@ Conexao con_categoria;
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Telefone");
 
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        enderecoFornecedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                enderecoFornecedorActionPerformed(evt);
             }
         });
 
@@ -113,10 +113,15 @@ Conexao con_categoria;
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Endereço");
 
-        jButton1.setBackground(new java.awt.Color(102, 0, 204));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Cadastrar\n");
+        Cadastrar.setBackground(new java.awt.Color(102, 0, 204));
+        Cadastrar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        Cadastrar.setForeground(new java.awt.Color(255, 255, 255));
+        Cadastrar.setText("Cadastrar\n");
+        Cadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CadastrarActionPerformed(evt);
+            }
+        });
 
         jPanel2.setBackground(new java.awt.Color(102, 0, 204));
 
@@ -211,7 +216,7 @@ Conexao con_categoria;
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(281, 281, 281)
-                        .addComponent(jButton1))
+                        .addComponent(Cadastrar))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(nomeForncedor)
@@ -223,7 +228,7 @@ Conexao con_categoria;
                         .addGap(65, 65, 65)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(enderecoFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -243,20 +248,20 @@ Conexao con_categoria;
                             .addComponent(jLabel5)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(enderecoFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(telefoneFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jLabel6))
                 .addGap(76, 76, 76)
-                .addComponent(jButton1)
+                .addComponent(Cadastrar)
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void enderecoFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enderecoFornecedorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_enderecoFornecedorActionPerformed
 
     private void FornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FornecedorActionPerformed
         AdicionarFornecedor tela = new AdicionarFornecedor();
@@ -281,6 +286,27 @@ Conexao con_categoria;
         tela.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_VoltarActionPerformed
+
+    private void CadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastrarActionPerformed
+        String nome = nomeForncedor.getText();
+        String telefone = telefoneFornecedor.getText();
+        String endereco = enderecoFornecedor.getText();
+
+        
+        try{
+            String insert_sql="insert into fornecedor (nome_fornecedor,telefone_fornecedor,endereco_fornecedor) "
+                    + "values ('"+nome+"','"+telefone+"','"+endereco+"')";
+            System.out.println(insert_sql);
+            con_fornecedor.statement.executeUpdate(insert_sql);
+            JOptionPane.showMessageDialog(null, "Cadastrado com sucesso");
+            Produtos tela = new Produtos();
+            tela.setVisible(true);
+            setVisible(false);
+        }catch(Exception erro){
+            JOptionPane.showMessageDialog(null, "Erro ao cadastrar");
+            System.out.println(erro);
+        }
+    }//GEN-LAST:event_CadastrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -334,20 +360,20 @@ Conexao con_categoria;
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Cadastrar;
     private javax.swing.JToggleButton Categoria;
     private javax.swing.JButton Fornecedor;
     private javax.swing.JToggleButton Produtos;
     private javax.swing.JLabel Titulo;
     private javax.swing.JLabel Titulo3;
     private javax.swing.JButton Voltar;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JTextField enderecoFornecedor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField nomeForncedor;
     private javax.swing.JTextField telefoneFornecedor;
     // End of variables declaration//GEN-END:variables
