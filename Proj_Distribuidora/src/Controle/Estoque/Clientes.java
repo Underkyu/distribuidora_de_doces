@@ -51,7 +51,6 @@ Conexao con_cliente;
         Tabela_Clientes = new javax.swing.JTable();
         Pesquisa_input = new javax.swing.JTextField();
         Lupa = new javax.swing.JLabel();
-        Bloquear = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         Titulo1 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -101,9 +100,6 @@ Conexao con_cliente;
         });
 
         Lupa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Controle/Imagens/lupa.png"))); // NOI18N
-
-        Bloquear.setBackground(new java.awt.Color(102, 0, 204));
-        Bloquear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Controle/Imagens/Bloquear.png"))); // NOI18N
 
         jPanel1.setBackground(new java.awt.Color(102, 0, 204));
 
@@ -214,9 +210,7 @@ Conexao con_cliente;
                         .addComponent(Lupa)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(Pesquisa_input, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Bloquear, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(448, 448, 448))
+                        .addGap(515, 515, 515))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -233,12 +227,10 @@ Conexao con_cliente;
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(Lupa)
-                        .addComponent(Pesquisa_input, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(Bloquear))
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(Lupa)
+                    .addComponent(Pesquisa_input, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17))
         );
 
         pack();
@@ -340,7 +332,6 @@ Conexao con_cliente;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Bloquear;
     private javax.swing.JButton Clientes;
     private javax.swing.JLabel Lupa;
     private javax.swing.JToggleButton Pedidos;

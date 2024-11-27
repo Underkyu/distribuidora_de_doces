@@ -68,6 +68,9 @@ public class Pedidos extends javax.swing.JFrame {
         Produtos = new javax.swing.JToggleButton();
         Pedidos = new javax.swing.JToggleButton();
         Titulo2 = new javax.swing.JLabel();
+        Status_Pedido = new javax.swing.JComboBox<>();
+        Codigo = new javax.swing.JTextField();
+        Atualizar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -95,6 +98,11 @@ public class Pedidos extends javax.swing.JFrame {
             }
         });
         Tabela_Pedidos.setRowHeight(50);
+        Tabela_Pedidos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Tabela_PedidosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(Tabela_Pedidos);
 
         PesquisarPedidos.setText(" ");
@@ -257,7 +265,7 @@ public class Pedidos extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(470, Short.MAX_VALUE)
                 .addComponent(Titulo2)
                 .addGap(18, 18, 18)
                 .addComponent(Clientes)
@@ -281,6 +289,23 @@ public class Pedidos extends javax.swing.JFrame {
                 .addGap(0, 11, Short.MAX_VALUE))
         );
 
+        Status_Pedido.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Concluído", "Pendente" }));
+        Status_Pedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Status_PedidoActionPerformed(evt);
+            }
+        });
+
+        Atualizar.setBackground(new java.awt.Color(102, 0, 204));
+        Atualizar.setFont(new java.awt.Font("Geometr212 BkCn BT", 1, 18)); // NOI18N
+        Atualizar.setForeground(new java.awt.Color(255, 255, 255));
+        Atualizar.setText("Atualizar");
+        Atualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AtualizarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -292,9 +317,15 @@ public class Pedidos extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(Lupa)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(PesquisarPedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(PesquisarPedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Status_Pedido, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Atualizar))
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Codigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(Lupa2)
@@ -320,11 +351,19 @@ public class Pedidos extends javax.swing.JFrame {
                             .addComponent(Lupa)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(2, 2, 2)
-                                .addComponent(PesquisarPedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(PesquisarPedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Status_Pedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Atualizar)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(103, 103, 103)
+                                .addComponent(Codigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(PesquisarProdutoVendido, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -390,6 +429,33 @@ public class Pedidos extends javax.swing.JFrame {
         tela.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_PedidosActionPerformed
+
+    private void Status_PedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Status_PedidoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Status_PedidoActionPerformed
+
+    private void Tabela_PedidosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tabela_PedidosMouseClicked
+        int linha_selecionada = Tabela_Pedidos.getSelectedRow();
+        Codigo.setText(Tabela_Pedidos.getValueAt(linha_selecionada, 0).toString());
+    }//GEN-LAST:event_Tabela_PedidosMouseClicked
+
+    private void AtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtualizarActionPerformed
+       String status = Status_Pedido.getSelectedItem().toString();
+       
+       try{
+          String insert_sql="update pedido set status_pedido='"+status+"' where id_pedido = "+Codigo.getText();
+                System.out.println(insert_sql);
+                con_pedidos.executaSQL("select * from pedido order by id_pedido");
+                con_pedidos.statement.executeUpdate(insert_sql);
+                JOptionPane.showMessageDialog(null, "Atualizado com sucesso");
+                Pedidos tela =  new Pedidos();
+                tela.setVisible(true);
+                setVisible(false);
+       }catch(Exception erro){
+            JOptionPane.showMessageDialog(null, "Erro ao atualizar");
+            System.out.println(erro);
+        }
+    }//GEN-LAST:event_AtualizarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -467,13 +533,16 @@ public class Pedidos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Atualizar;
     private javax.swing.JButton Clientes;
+    private javax.swing.JTextField Codigo;
     private javax.swing.JLabel Lupa;
     private javax.swing.JLabel Lupa2;
     private javax.swing.JToggleButton Pedidos;
     private javax.swing.JTextField PesquisarPedidos;
     private javax.swing.JTextField PesquisarProdutoVendido;
     private javax.swing.JToggleButton Produtos;
+    private javax.swing.JComboBox<String> Status_Pedido;
     private javax.swing.JTable Tabela_Pedidos;
     private javax.swing.JTable Tabela_Produtos_Pedidos;
     private javax.swing.JLabel Titulo;
