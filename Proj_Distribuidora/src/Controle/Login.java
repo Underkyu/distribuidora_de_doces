@@ -4,15 +4,16 @@
  */
 package Controle;
 
-import Controle.Cliente.Carrinho;
 import Controle.Cliente.CatalogoBalas;
 import Conexao.Conexao;
-import Controle.Cliente.Carrinho;
-import Controle.Estoque.AdicionarCategoria;
+import Controle.Cliente.HistoricoCliente;
+import Controle.Cliente.SessaoCompra;
 import Controle.Estoque.Produtos;
 import java.awt.Color;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import java.sql.ResultSet;  // Adicionado
+import java.sql.PreparedStatement;
 
 /**
  *
@@ -20,13 +21,20 @@ import javax.swing.JOptionPane;
  */
 
 import java.awt.Toolkit;
+import java.sql.Connection;
 public class Login extends javax.swing.JFrame {
     Conexao conexao_login;
-    public static String cpfUsuarioLogado; // Variável para armazenar o CPF do usuário logado
+    private Connection conn;
+    public static String cpfUsuarioLogado;  // Variável para armazenar o CPF do usuário logado
+    public static int idClienteLogado;  // Variável para armazenar o ID do cliente logado
+    private SessaoCompra sessaoCompra;
 
     public Login() {
+        
         // Inicialização dos componentes do JFrame
         initComponents();
+        
+        this.sessaoCompra = sessaoCompra;
         
         // Define o ícone da janela
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Controle/Imagens/icon.png")));
@@ -43,6 +51,74 @@ public class Login extends javax.swing.JFrame {
         conexao_login.conecta();
     }
 
+    private void realizarLogin() {
+    // Obtém CPF e senha inseridos pelo usuário
+    String cpf = campoCpf.getText().replaceAll("\\D", "").trim();  // Remove caracteres não numéricos
+    String senha = SenhaCampo.getText().trim();
+
+    if (cpf.isEmpty() || senha.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Preencha todos os campos!", "Aviso", JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+
+    try {
+        // Verifica na tabela 'usuario' primeiro, caso o usuário esteja registrado lá
+        String queryUsuario = "SELECT * FROM usuario WHERE cpf = ? AND senha = ?";
+        try (PreparedStatement pstUsuario = conexao_login.conexao.prepareStatement(queryUsuario)) {
+            pstUsuario.setString(1, cpf);
+            pstUsuario.setString(2, senha);
+            try (ResultSet rsUsuario = pstUsuario.executeQuery()) {
+                if (rsUsuario.next()) {
+                    // Usuário encontrado na tabela 'usuario'
+                    cpfUsuarioLogado = cpf;  // Salva o CPF logado
+                    System.out.println("Usuário encontrado na tabela 'usuario': " + cpf);
+
+                    // Abre a tela de Produtos
+                    Produtos produtos = new Produtos();
+                    produtos.setVisible(true);
+                    dispose(); // Fecha a tela de login
+                    return;
+                }
+            }
+        }
+
+        // Se não encontrar na tabela 'usuario', verifica na tabela 'cliente'
+        String queryCliente = "SELECT id_cliente FROM cliente WHERE cpf_cliente = ? AND senha = ?";
+        try (PreparedStatement pstCliente = conexao_login.conexao.prepareStatement(queryCliente)) {
+            pstCliente.setString(1, cpf);
+            pstCliente.setString(2, senha);
+            try (ResultSet rsCliente = pstCliente.executeQuery()) {
+                if (rsCliente.next()) {
+                    // Cliente encontrado na tabela 'cliente'
+                    cpfUsuarioLogado = cpf;  // Salva o CPF logado
+                    idClienteLogado = rsCliente.getInt("id_cliente");  // Armazena o id_cliente do cliente logado
+                    System.out.println("Cliente encontrado na tabela 'cliente': " + cpf);
+
+                    // Abre a tela de HistoricoCliente
+                    SessaoCompra sessaoCompra = new SessaoCompra(); 
+                    CatalogoBalas abrir = new CatalogoBalas(sessaoCompra);
+                    abrir.setVisible(true);
+                    dispose(); // Fecha a tela de login
+                    return;
+                }
+            }
+        }
+
+        // Se não encontrado em nenhuma tabela
+        System.out.println("Usuário não encontrado em nenhuma tabela: " + cpf);
+        JOptionPane.showMessageDialog(this, "Usuário não cadastrado! Por favor, realize o cadastro.", "Mensagem do Programa", JOptionPane.INFORMATION_MESSAGE);
+
+        // Redireciona para a tela de Inscrição
+        Inscricao inscricao = new Inscricao();
+        inscricao.setVisible(true);
+        dispose(); // Fecha a tela de login
+
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(this, "Erro ao acessar os dados: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        e.printStackTrace();
+    }
+}
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -74,9 +150,8 @@ public class Login extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        imagem = new javax.swing.JLabel();
         titulo4 = new javax.swing.JLabel();
+        imagem = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(43, 0, 87));
 
@@ -241,9 +316,11 @@ public class Login extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Tela de Login");
         setBackground(new java.awt.Color(255, 255, 255));
 
         campoCpf.setBackground(new java.awt.Color(43, 0, 87));
+        campoCpf.setFont(new java.awt.Font("Bahnschrift", 0, 18)); // NOI18N
         campoCpf.setForeground(new java.awt.Color(255, 255, 255));
         campoCpf.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CPF:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Geometr212 BkCn BT", 0, 18), new java.awt.Color(255, 255, 255))); // NOI18N
         campoCpf.addActionListener(new java.awt.event.ActionListener() {
@@ -253,7 +330,7 @@ public class Login extends javax.swing.JFrame {
         });
 
         SenhaCampo.setBackground(new java.awt.Color(43, 0, 87));
-        SenhaCampo.setFont(new java.awt.Font("Geometr212 BkCn BT", 0, 14)); // NOI18N
+        SenhaCampo.setFont(new java.awt.Font("Bahnschrift", 0, 18)); // NOI18N
         SenhaCampo.setForeground(new java.awt.Color(255, 255, 255));
         SenhaCampo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Senha:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Geometr212 BkCn BT", 0, 18), new java.awt.Color(255, 255, 255))); // NOI18N
         SenhaCampo.addActionListener(new java.awt.event.ActionListener() {
@@ -266,44 +343,29 @@ public class Login extends javax.swing.JFrame {
         entrarBotao.setFont(new java.awt.Font("Geometr212 BkCn BT", 1, 18)); // NOI18N
         entrarBotao.setForeground(new java.awt.Color(255, 255, 255));
         entrarBotao.setText("Entrar");
-        entrarBotao.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, java.awt.Color.white, java.awt.Color.white));
+        entrarBotao.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         entrarBotao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 entrarBotaoActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Square721 BT", 1, 11)); // NOI18N
+        jButton2.setBackground(new java.awt.Color(0, 153, 153));
+        jButton2.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Se inscrever");
+        jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
-        jPanel2.setBackground(new java.awt.Color(102, 0, 204));
-
-        imagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Controle/Imagens/icone.png"))); // NOI18N
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(245, 245, 245)
-                .addComponent(imagem)
-                .addContainerGap(279, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(imagem)
-                .addGap(0, 5, Short.MAX_VALUE))
-        );
-
-        titulo4.setFont(new java.awt.Font("Geometr212 BkCn BT", 1, 36)); // NOI18N
+        titulo4.setFont(new java.awt.Font("Bahnschrift", 1, 48)); // NOI18N
         titulo4.setForeground(new java.awt.Color(255, 255, 255));
         titulo4.setText("LOGIN");
+
+        imagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Controle/Imagens/icone.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -312,26 +374,30 @@ public class Login extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
+                        .addGap(83, 83, 83)
                         .addComponent(jLabel7)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(60, 60, 60)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(campoCpf)
-                                    .addComponent(SenhaCampo)
-                                    .addComponent(entrarBotao, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(165, 165, 165)
-                                .addComponent(titulo4))))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(titulo4)
+                        .addGap(89, 89, 89))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(imagem)
+                        .addGap(128, 128, 128)))
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel4))
             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                .addGap(227, 227, 227)
-                .addComponent(jButton2))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(143, 143, 143)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(SenhaCampo)
+                            .addComponent(campoCpf)
+                            .addComponent(entrarBotao, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(258, 258, 258)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 152, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -340,26 +406,26 @@ public class Login extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(titulo4))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(5, 5, 5)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(42, 42, 42)
-                        .addComponent(campoCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34)
-                        .addComponent(SenhaCampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(entrarBotao, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addComponent(jButton2)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(5, 5, 5)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGap(22, 22, 22)
+                            .addComponent(imagem)
+                            .addGap(18, 18, 18)
+                            .addComponent(titulo4))))
+                .addGap(18, 18, 18)
+                .addComponent(campoCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(SenhaCampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addComponent(entrarBotao, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+                .addGap(34, 34, 34))
         );
 
         pack();
@@ -372,7 +438,7 @@ public class Login extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // REDIRECIONAMENTO PARA O BOTÃO DE INSCRIÇÃO (CADASTRO DE CLIENTE)
-        Inscrição inscrição = new Inscrição();
+        Inscricao inscrição = new Inscricao();
         inscrição.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -382,61 +448,8 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_campoCpfActionPerformed
 
     private void entrarBotaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entrarBotaoActionPerformed
-try {
-    String cpf = campoCpf.getText().replaceAll("[^0-9]", "").trim();
-    String senha = SenhaCampo.getText().trim();
-
-    // Verifica na tabela 'usuario' se o usuário é um estoquista
-    String pesquisaEstoque = "SELECT * FROM usuario WHERE cpf like '" + campoCpf.getText()+ "' && senha = '" + SenhaCampo.getText() + "'";
-    conexao_login.executaSQL(pesquisaEstoque);
-
-    if (conexao_login.resultset.first()) {
-        System.out.println("Usuário encontrado na tabela de 'usuario': " + cpf);
-
-        // Abre a tela de Produtos
-     Produtos produtos = new Produtos();
-        produtos.setVisible(true);
-        dispose(); 
-    } 
-    
-    else {
-        System.out.println("Usuário não encontrado na tabela de 'usuario'. Tentando tabela 'cliente'...");
-
-         String pesquisa = "select * from cliente where cpf_cliente like '" + campoCpf.getText() + "' && senha = '" + SenhaCampo.getText() + "'";
-           conexao_login.executaSQL(pesquisa);
-           
-           if (conexao_login.resultset.first()) {
-               Carrinho carrinho= new Carrinho();
-               carrinho.setVisible(true);
-               dispose();
-           
-          
-
-       
-        } else {
-            System.out.println("Usuário não encontrado em nenhuma das tabelas: " + cpf);
-
-            // Exibe mensagem e redireciona para inscrição
-            JOptionPane.showMessageDialog(null, "Usuário não cadastrado! Por favor, realize o cadastro.", "Mensagem do Programa", JOptionPane.INFORMATION_MESSAGE);
-            Inscrição telaInscricao = new Inscrição();
-            telaInscricao.setVisible(true);
-            dispose(); // Fecha a tela de login
-        }
-    }
-} catch (SQLException errosql) {
-    JOptionPane.showMessageDialog(null, "Erro ao acessar os dados: " + errosql.getMessage(), "Mensagem do Programa", JOptionPane.INFORMATION_MESSAGE);
-} finally {
-    try {
-        if (conexao_login.resultset != null) conexao_login.resultset.close();
-        if (conexao_login.statement != null) conexao_login.statement.close();
-    } catch (SQLException e) {
-        e.printStackTrace();
-    }
-}
-
-
-
-
+    realizarLogin();
+   
     }//GEN-LAST:event_entrarBotaoActionPerformed
 
 
@@ -462,10 +475,6 @@ try {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -498,7 +507,6 @@ try {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tabelaCompra;
     private javax.swing.JLabel titulo1;
