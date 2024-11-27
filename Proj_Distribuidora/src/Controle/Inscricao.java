@@ -226,7 +226,7 @@ public class Inscricao extends javax.swing.JFrame {
 
 
     try {
-String insert_sql = "INSERT INTO cliente (nome_cliente, telefone_cliente, cpf_cliente, data_nasc, endereco_cliente, senha, status_cliente) VALUES (?, ?, ?, ?, ?, ?,?)";
+String insert_sql = "INSERT INTO cliente (nome_cliente, telefone_cliente, cpf_cliente, data_nasc, endereco_cliente, senha) VALUES (?, ?, ?, ?, ?, ?)";
         
         PreparedStatement pstmt = conn.prepareStatement(insert_sql);
         pstmt.setString(1, nome);
