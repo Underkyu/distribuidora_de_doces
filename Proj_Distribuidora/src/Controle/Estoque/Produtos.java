@@ -86,7 +86,7 @@ Conexao con_categoria;
 
         jScrollPane1.setBorder(null);
 
-        Tabela_Produtos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Tabela_Produtos.setBorder(javax.swing.BorderFactory.createLineBorder(null));
         Tabela_Produtos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         Tabela_Produtos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -125,7 +125,7 @@ Conexao con_categoria;
 
         jScrollPane3.setBorder(null);
 
-        Tabela_Forncedor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Tabela_Forncedor.setBorder(javax.swing.BorderFactory.createLineBorder(null));
         Tabela_Forncedor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         Tabela_Forncedor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -164,7 +164,7 @@ Conexao con_categoria;
 
         jScrollPane4.setBorder(null);
 
-        Tabela_Categoria.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Tabela_Categoria.setBorder(javax.swing.BorderFactory.createLineBorder(null));
         Tabela_Categoria.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         Tabela_Categoria.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -251,7 +251,7 @@ Conexao con_categoria;
                 .addComponent(Titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
-                .addContainerGap(104, Short.MAX_VALUE))
+                .addContainerGap(112, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -270,7 +270,7 @@ Conexao con_categoria;
         Titulo14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Titulo14.setText("Categorias");
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Controle/Imagens/linhas-de-opcoes.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Controle/Imagens/categoria.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
@@ -408,8 +408,8 @@ Conexao con_categoria;
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE))
-                                .addGap(18, 24, Short.MAX_VALUE)
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 515, Short.MAX_VALUE))
+                                .addGap(18, 32, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(Adicionarcategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)

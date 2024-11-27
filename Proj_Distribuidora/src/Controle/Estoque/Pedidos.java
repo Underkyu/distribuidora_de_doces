@@ -27,10 +27,11 @@ public class Pedidos extends javax.swing.JFrame {
         con_pedidos.executaSQL("select * from pedido order by id_pedido");
         con_produto_vendido = new Conexao();
         con_produto_vendido.conecta();
-        con_produto_vendido.executaSQL("select * from produto_vendido order by id_prod_vendido");
+        con_produto_vendido.executaSQL("select * from item_pedido order by id_prod_vendido");
         preenchaerTabela();
          getContentPane().setBackground(new Color(43,0,87));
          setLocationRelativeTo(null);
+         Codigo.setVisible(false);
          Clientes.setBorderPainted(false);        // Remove a borda
         Clientes.setContentAreaFilled(false);    // Remove o fundo
         Produtos.setBorderPainted(false);        // Remove a borda
@@ -76,7 +77,7 @@ public class Pedidos extends javax.swing.JFrame {
 
         jScrollPane1.setBorder(null);
 
-        Tabela_Pedidos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Tabela_Pedidos.setBorder(javax.swing.BorderFactory.createLineBorder(null));
         Tabela_Pedidos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         Tabela_Pedidos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -141,7 +142,7 @@ public class Pedidos extends javax.swing.JFrame {
         Titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Titulo.setText("Pedidos");
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Controle/Imagens/carrinho-de-compras.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Controle/Imagens/carrinho-carrinho (1).png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -168,7 +169,7 @@ public class Pedidos extends javax.swing.JFrame {
         Titulo3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Titulo3.setText("Produto vendido");
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Controle/Imagens/moeda.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Controle/Imagens/moedas-de-dolar.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -191,28 +192,28 @@ public class Pedidos extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Titulo3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
         jScrollPane3.setBorder(null);
 
-        Tabela_Produtos_Pedidos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Tabela_Produtos_Pedidos.setBorder(javax.swing.BorderFactory.createLineBorder(null));
         Tabela_Produtos_Pedidos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         Tabela_Produtos_Pedidos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Id", "Id_pedido", "Id_produito", "Quantidade", "Preço_final"
+                "Id", "Id_pedido", "Nome_produto", "Preco", "Quantidade", "Total"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, true, true, true
+                false, true, true, true, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -340,7 +341,7 @@ public class Pedidos extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -399,7 +400,7 @@ public class Pedidos extends javax.swing.JFrame {
 
     private void PesquisarProdutoVendidoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PesquisarProdutoVendidoKeyReleased
       try{
-            String pesquisa = "select * from produto_vendido where id_prod_vendido  like "+ PesquisarProdutoVendido.getText() ;
+            String pesquisa = "select * from item_pedido where id_prod_vendido  like "+ PesquisarProdutoVendido.getText() ;
             con_produto_vendido.executaSQL(pesquisa);
             
             if(con_produto_vendido.resultset.first()){
@@ -524,7 +525,7 @@ public class Pedidos extends javax.swing.JFrame {
             con_produto_vendido.resultset.beforeFirst();
             while(con_produto_vendido.resultset.next()){
                 modelo2.addRow(new Object[]{
-                    con_produto_vendido.resultset.getString("id_prod_vendido"),con_produto_vendido.resultset.getString("id_pedido"),con_produto_vendido.resultset.getString("id_produto"), con_produto_vendido.resultset.getString("quantidade"), con_produto_vendido.resultset.getString("preco_final")
+                    con_produto_vendido.resultset.getString("id_prod_vendido"),con_produto_vendido.resultset.getString("id_pedido"),con_produto_vendido.resultset.getString("nome_produto"),con_produto_vendido.resultset.getString("preco"), con_produto_vendido.resultset.getString("quantidade"), con_produto_vendido.resultset.getString("total")
                 });
             }
         }catch(SQLException erro){
