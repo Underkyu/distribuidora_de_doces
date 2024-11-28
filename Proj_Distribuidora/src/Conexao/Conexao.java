@@ -8,7 +8,7 @@ import java.sql.*; // Para a execução dos comandos SQL
 
 /**
  *
- * @author FATEC ZONA LESTE
+ * @author Maria Eduarda
  */
 public class Conexao {
     
@@ -25,7 +25,7 @@ public class Conexao {
     final private String senha = "";
     
     // Variável que armazena a conexão aberta
-    private Connection conexao;
+    public Connection conexao;
     
     // Variável para a execução dos comandos SQL
     public Statement statement;
@@ -40,7 +40,6 @@ public class Conexao {
     try {
         Class.forName(driver);
         conexao = DriverManager.getConnection(url, usuario, senha);
-        JOptionPane.showMessageDialog(null, "Conexão estabelecida.", "Mensagem do Programa", JOptionPane.INFORMATION_MESSAGE);
         return conexao; // Retorna a conexão
     } catch (ClassNotFoundException Driver) {
         JOptionPane.showMessageDialog(null, "Driver não localizado: " + Driver, "Mensagem do Programa", JOptionPane.INFORMATION_MESSAGE);
