@@ -74,12 +74,14 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="opcao1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="pirulitosBotao" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="chicletesBotao" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="chocolatesBotao" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="perfilBotao" alignment="1" min="-2" pref="41" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="opcao1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="pirulitosBotao" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="chicletesBotao" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="chocolatesBotao" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                       <Component id="imagem" alignment="0" min="-2" max="-2" attributes="0"/>

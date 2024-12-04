@@ -157,8 +157,13 @@ import java.time.format.DateTimeFormatter;
         box1.setBackground(new java.awt.Color(43, 0, 87));
         box1.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         box1.setForeground(new java.awt.Color(255, 255, 255));
-        box1.setText("Chiclete Spish - Sabor Uva");
+        box1.setText("Chiclete Spish- Sabor Uva");
         box1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        box1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                box1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout bloco1Balas1Layout = new javax.swing.GroupLayout(bloco1Balas1);
         bloco1Balas1.setLayout(bloco1Balas1Layout);
@@ -937,6 +942,29 @@ import java.time.format.DateTimeFormatter;
             double preco = Double.parseDouble(modelo.getValueAt(i, 1).toString());
             int quantidade = Integer.parseInt(modelo.getValueAt(i, 2).toString());
             double total = Double.parseDouble(modelo.getValueAt(i, 3).toString());
+            int quantidadeTotal; //Variavel que armazena a quantidade para ser armazenada no banco
+            
+            
+            System.out.println(nomeProduto);
+            String sqlQuantidadeItem = "SELECT quantidade_estoque FROM produto WHERE nome_produto like '" +nomeProduto+"%'"; //Pega a quantidade do produto a partir do nome
+            System.out.println(sqlQuantidadeItem);
+            PreparedStatement pstmtQuantidadeProduto= conexao.conexao.prepareStatement(sqlQuantidadeItem);
+            ResultSet rsQuantidadeProduto = pstmtQuantidadeProduto.executeQuery();
+            if (rsQuantidadeProduto.next()) { // Move o cursor para o próximo registro, se houver
+                int quantidadeProduto = rsQuantidadeProduto.getInt("quantidade_estoque");
+                System.out.println("Quantidade atual no estoque: " + quantidadeProduto);
+                quantidadeTotal = quantidadeProduto - quantidade;
+            } else {
+                System.out.println("Produto não encontrado.");
+                return; // Sai do método, pois não há produto correspondente
+            }
+            sqlQuantidadeItem = "UPDATE produto SET quantidade_estoque= "+ quantidadeTotal +" WHERE nome_produto like '" +nomeProduto+"%'"; //Pega a quantidade do produto a partir do nome
+            System.out.println(sqlQuantidadeItem);
+            PreparedStatement pstmtProduto= conexao.conexao.prepareStatement(sqlQuantidadeItem);
+            pstmtProduto.executeUpdate(); 
+            
+            
+            
 
             String sqlItemPedido = "INSERT INTO item_pedido (id_pedido, nome_produto, preco, quantidade, total) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement pstmtItemPedido = conexao.conexao.prepareStatement(sqlItemPedido);
@@ -977,7 +1005,7 @@ import java.time.format.DateTimeFormatter;
         totalCompra.setText("0.00");
 
     } catch (SQLException e) {
-        JOptionPane.showMessageDialog(this, "Erro ao finalizar compra: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Erro ao finalizar compra: " + e.getLocalizedMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
     } finally {
         conexao.desconecta();  // Desconecta do banco
     }
@@ -996,6 +1024,10 @@ import java.time.format.DateTimeFormatter;
         pag.setVisible(true);
         this.setVisible(false);  // Esconde a página atual
     }//GEN-LAST:event_perfilBotao1ActionPerformed
+
+    private void box1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_box1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_box1ActionPerformed
 
     /**
      * @param args the command line arguments

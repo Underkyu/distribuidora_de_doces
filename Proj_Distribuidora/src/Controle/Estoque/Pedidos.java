@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.sql.*;
 import java.awt.Color;
+import java.awt.Toolkit;
 
 /**
  *
@@ -38,6 +39,7 @@ public class Pedidos extends javax.swing.JFrame {
         Produtos.setContentAreaFilled(false);    // Remove o fundo
         Pedidos.setBorderPainted(false);        // Remove a borda
         Pedidos.setContentAreaFilled(false);    // Remove o fundo
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Controle/Imagens/icon.png")));
     }
 
     /**

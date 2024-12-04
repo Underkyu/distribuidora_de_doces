@@ -6,6 +6,7 @@ package Controle.Estoque;
 
 import java.awt.Color;
 import Conexao.Conexao;
+import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.sql.*;
@@ -36,6 +37,7 @@ Conexao con_cliente;
         Produtos.setContentAreaFilled(false);    // Remove o fundo
         Pedidos.setBorderPainted(false);        // Remove a borda
         Pedidos.setContentAreaFilled(false);    // Remove o fundo
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Controle/Imagens/icon.png")));
     }
 
     /**

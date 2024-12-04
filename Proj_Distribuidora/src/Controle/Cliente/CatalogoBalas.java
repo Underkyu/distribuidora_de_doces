@@ -222,12 +222,13 @@ public class CatalogoBalas extends javax.swing.JFrame {
                 .addGroup(menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(menuLayout.createSequentialGroup()
                         .addGap(19, 19, 19)
-                        .addGroup(menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(opcao1)
-                            .addComponent(pirulitosBotao)
-                            .addComponent(chicletesBotao)
-                            .addComponent(chocolatesBotao)
-                            .addComponent(perfilBotao, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(perfilBotao, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(opcao1)
+                                .addComponent(pirulitosBotao)
+                                .addComponent(chicletesBotao)
+                                .addComponent(chocolatesBotao))))
                     .addComponent(imagem))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -934,6 +935,26 @@ public class CatalogoBalas extends javax.swing.JFrame {
             double preco = Double.parseDouble(modelo.getValueAt(i, 1).toString());
             int quantidade = Integer.parseInt(modelo.getValueAt(i, 2).toString());
             double total = Double.parseDouble(modelo.getValueAt(i, 3).toString());
+            int quantidadeTotal; //Variavel que armazena a quantidade para ser armazenada no banco
+            
+            
+            System.out.println(nomeProduto);
+            String sqlQuantidadeItem = "SELECT quantidade_estoque FROM produto WHERE nome_produto like '" +nomeProduto+"%'"; //Pega a quantidade do produto a partir do nome
+            System.out.println(sqlQuantidadeItem);
+            PreparedStatement pstmtQuantidadeProduto= conexao.conexao.prepareStatement(sqlQuantidadeItem);
+            ResultSet rsQuantidadeProduto = pstmtQuantidadeProduto.executeQuery();
+            if (rsQuantidadeProduto.next()) { // Move o cursor para o próximo registro, se houver
+                int quantidadeProduto = rsQuantidadeProduto.getInt("quantidade_estoque");
+                System.out.println("Quantidade atual no estoque: " + quantidadeProduto);
+                quantidadeTotal = quantidadeProduto - quantidade;
+            } else {
+                System.out.println("Produto não encontrado.");
+                return; // Sai do método, pois não há produto correspondente
+            }
+            sqlQuantidadeItem = "UPDATE produto SET quantidade_estoque= "+ quantidadeTotal +" WHERE nome_produto like '" +nomeProduto+"%'"; //Pega a quantidade do produto a partir do nome
+            System.out.println(sqlQuantidadeItem);
+            PreparedStatement pstmtProduto= conexao.conexao.prepareStatement(sqlQuantidadeItem);
+            pstmtProduto.executeUpdate(); 
 
             String sqlItemPedido = "INSERT INTO item_pedido (id_pedido, nome_produto, preco, quantidade, total) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement pstmtItemPedido = conexao.conexao.prepareStatement(sqlItemPedido);
